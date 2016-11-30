@@ -1,4 +1,4 @@
-mysql-docker
+wordpress-docker
 ============
 
 Dockerfile source for WordPress [docker](https://docker.io) image.
