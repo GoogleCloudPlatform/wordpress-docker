@@ -1,6 +1,6 @@
 versions:
   - dir: php5.6/apache
-    repo: wordpress-php5-apache
+    repo: wordpress4-php5-apache
     tags: &tags
       - 4.6.1
       - '4.6'
@@ -12,21 +12,21 @@ versions:
         version: 4.6.1
         sha1: 027e065d30a64720624a7404a1820e6c6fff1202
   - dir: php5.6/fpm
-    repo: wordpress-php5-fpm
+    repo: wordpress4-php5-fpm
     tags: *tags
     from: gcr.io/cloud-marketplace-ops/php5-fpm
     cmd: php-fpm
     packages:
       wordpress: *wordpress
   - dir: php7.0/apache
-    repo: wordpress-php7-apache
+    repo: wordpress4-php7-apache
     tags: *tags
     from: gcr.io/cloud-marketplace-ops/php7-apache
     cmd: apache2-foreground
     packages:
       wordpress: *wordpress
   - dir: php7.0/fpm
-    repo: wordpress-php7-fpm
+    repo: wordpress4-php7-fpm
     tags: *tags
     from: gcr.io/cloud-marketplace-ops/php7-fpm
     cmd: php-fpm
