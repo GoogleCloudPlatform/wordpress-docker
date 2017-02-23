@@ -1,0 +1,74 @@
+
+steps:
+
+# Build images
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - 'build'
+      - '--tag=gcr.io/$PROJECT_ID/wordpress4-php5-apache:4.6.1'
+      - 'php5.6/apache'
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - 'build'
+      - '--tag=gcr.io/$PROJECT_ID/wordpress4-php5-fpm:4.6.1'
+      - 'php5.6/fpm'
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - 'build'
+      - '--tag=gcr.io/$PROJECT_ID/wordpress4-php7-apache:4.6.1'
+      - 'php7.0/apache'
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - 'build'
+      - '--tag=gcr.io/$PROJECT_ID/wordpress4-php7-fpm:4.6.1'
+      - 'php7.0/fpm'
+
+# Run tests
+
+# Add alias tags
+  - name: gcr.io/cloud-builders/retagger
+    args:
+      - 'gcr.io/$PROJECT_ID/wordpress4-php5-apache:4.6.1'
+      - 'gcr.io/$PROJECT_ID/wordpress4-php5-apache:4.6'
+  - name: gcr.io/cloud-builders/retagger
+    args:
+      - 'gcr.io/$PROJECT_ID/wordpress4-php5-apache:4.6.1'
+      - 'gcr.io/$PROJECT_ID/wordpress4-php5-apache:latest'
+  - name: gcr.io/cloud-builders/retagger
+    args:
+      - 'gcr.io/$PROJECT_ID/wordpress4-php5-fpm:4.6.1'
+      - 'gcr.io/$PROJECT_ID/wordpress4-php5-fpm:4.6'
+  - name: gcr.io/cloud-builders/retagger
+    args:
+      - 'gcr.io/$PROJECT_ID/wordpress4-php5-fpm:4.6.1'
+      - 'gcr.io/$PROJECT_ID/wordpress4-php5-fpm:latest'
+  - name: gcr.io/cloud-builders/retagger
+    args:
+      - 'gcr.io/$PROJECT_ID/wordpress4-php7-apache:4.6.1'
+      - 'gcr.io/$PROJECT_ID/wordpress4-php7-apache:4.6'
+  - name: gcr.io/cloud-builders/retagger
+    args:
+      - 'gcr.io/$PROJECT_ID/wordpress4-php7-apache:4.6.1'
+      - 'gcr.io/$PROJECT_ID/wordpress4-php7-apache:latest'
+  - name: gcr.io/cloud-builders/retagger
+    args:
+      - 'gcr.io/$PROJECT_ID/wordpress4-php7-fpm:4.6.1'
+      - 'gcr.io/$PROJECT_ID/wordpress4-php7-fpm:4.6'
+  - name: gcr.io/cloud-builders/retagger
+    args:
+      - 'gcr.io/$PROJECT_ID/wordpress4-php7-fpm:4.6.1'
+      - 'gcr.io/$PROJECT_ID/wordpress4-php7-fpm:latest'
+
+images:
+  - 'gcr.io/$PROJECT_ID/wordpress4-php5-apache:4.6.1'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php5-apache:4.6'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php5-apache:latest'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php5-fpm:4.6.1'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php5-fpm:4.6'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php5-fpm:latest'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php7-apache:4.6.1'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php7-apache:4.6'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php7-apache:latest'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php7-fpm:4.6.1'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php7-fpm:4.6'
+  - 'gcr.io/$PROJECT_ID/wordpress4-php7-fpm:latest'
