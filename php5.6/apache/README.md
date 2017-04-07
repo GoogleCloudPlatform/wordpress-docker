@@ -1,4 +1,4 @@
-# <a name="about"a></a>About
+# <a name="about"></a>About
 
 This image contains an installation of WordPress 4.x served by an Apache HTTP
 Server on a PHP 5.x runtime.
