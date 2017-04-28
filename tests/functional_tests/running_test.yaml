@@ -17,7 +17,7 @@
 setup:
 - command: [docker, run, --privileged=true, --name, some-mysql, -e, 'MYSQL_ROOT_PASSWORD=example-password', -d, 'launcher.gcr.io/google/mysql5']
 - command: [docker, run, --privileged=true, --name, some-wordpress, -p, '8080:80', --link, 'some-mysql:mysql', -d, '$IMAGE']
-- command: [sleep, 30s]
+- command: [sleep, 45s]
 
 teardown:
 - command: [docker, stop, some-wordpress, some-mysql]
