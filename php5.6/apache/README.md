@@ -7,6 +7,7 @@ For more information, see the
 [Official Image Launcher Page](https://console.cloud.google.com/launcher/details/google/wordpress4-php5-apache).
 
 Pull command:
+
 ```shell
 gcloud docker -- pull launcher.gcr.io/google/wordpress4-php5-apache
 ```
@@ -42,6 +43,7 @@ This section describes how to spin up a Wordpress service using this image.
 Wordpress requires a separate MySQL service which can be run in another container.
 
 Copy the following content to `pod.yaml` file, and run `kubectl create -f pod.yaml`.
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -54,18 +56,19 @@ spec:
     - image: launcher.gcr.io/google/wordpress4-php5-apache
       name: wordpress
       env:
-        - name: WORDPRESS_DB_HOST
-          value: 127.0.0.1:3306
-        - name: WORDPRESS_DB_PASSWORD
-          value: example-password
+        - name: "WORDPRESS_DB_HOST"
+          value: "127.0.0.1:3306"
+        - name: "WORDPRESS_DB_PASSWORD"
+          value: "example-password"
     - image: launcher.gcr.io/google/mysql5
       name: mysql
       env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: example-password
+        - name: "MYSQL_ROOT_PASSWORD"
+          value: "example-password"
 ```
 
 Run the following to expose the port:
+
 ```shell
 kubectl expose pod some-wordpress --name some-wordpress-80 \
   --type LoadBalancer --port 80 --protocol TCP
@@ -78,6 +81,7 @@ For information about how to retain your Wordpress installation across restarts,
 Instead of spinning up a MySQL container, we can connect Wordpress to any running MySQL database instance (assumed to be running at `some.mysql.host`) by specifying its hostname via environment variable `WORDPRESS_DB_HOST`. Database username and password also have to be explicitly specified to connect to the database instance via `WORDPRESS_DB_USER` and `WORDPRESS_DB_PASSWORD`.
 
 Copy the following content to `pod.yaml` file, and run `kubectl create -f pod.yaml`.
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -90,15 +94,16 @@ spec:
     - image: launcher.gcr.io/google/wordpress4-php5-apache
       name: wordpress
       env:
-        - name: WORDPRESS_DB_HOST
-          value: some.mysql.host:3306
-        - name: WORDPRESS_DB_PASSWORD
-          value: example-password
-        - name: WORDPRESS_DB_USER
-          value: root
+        - name: "WORDPRESS_DB_HOST"
+          value: "some.mysql.host:3306"
+        - name: "WORDPRESS_DB_PASSWORD"
+          value: "example-password"
+        - name: "WORDPRESS_DB_USER"
+          value: "root"
 ```
 
 Run the following to expose the port:
+
 ```shell
 kubectl expose pod some-wordpress --name some-wordpress-80 \
   --type LoadBalancer --port 80 --protocol TCP
@@ -109,6 +114,7 @@ kubectl expose pod some-wordpress --name some-wordpress-80 \
 We can store data on persistent volumes for both MySQL and Wordpress. This way the installation remains intact across restarts.
 
 Copy the following content to `pod.yaml` file, and run `kubectl create -f pod.yaml`.
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -121,10 +127,10 @@ spec:
     - image: launcher.gcr.io/google/wordpress4-php5-apache
       name: wordpress
       env:
-        - name: WORDPRESS_DB_HOST
-          value: 127.0.0.1:3306
-        - name: WORDPRESS_DB_PASSWORD
-          value: example-password
+        - name: "WORDPRESS_DB_HOST"
+          value: "127.0.0.1:3306"
+        - name: "WORDPRESS_DB_PASSWORD"
+          value: "example-password"
       volumeMounts:
         - name: wordpress-data
           mountPath: /var/www/html
@@ -132,8 +138,8 @@ spec:
     - image: launcher.gcr.io/google/mysql5
       name: mysql
       env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: example-password
+        - name: "MYSQL_ROOT_PASSWORD"
+          value: "example-password"
       volumeMounts:
         - name: mysql-data
           mountPath: /var/lib/mysql
@@ -174,6 +180,7 @@ spec:
 ```
 
 Run the following to expose the port:
+
 ```shell
 kubectl expose pod some-wordpress --name some-wordpress-80 \
   --type LoadBalancer --port 80 --protocol TCP
@@ -190,13 +197,15 @@ This section describes how to spin up a Wordpress service using this image.
 Wordpress requires a separate MySQL service which can be run in another container.
 
 Use the following content for the `docker-compose.yml` file, then run `docker-compose up`.
+
 ```yaml
 version: '2'
 services:
   wordpress:
+    container_name: some-wordpress
     image: launcher.gcr.io/google/wordpress4-php5-apache
     environment:
-      WORDPRESS_DB_PASSWORD: example-password
+      "WORDPRESS_DB_PASSWORD": "example-password"
     ports:
       - '8080:80'
     depends_on:
@@ -204,7 +213,7 @@ services:
   mysql:
     image: launcher.gcr.io/google/mysql5
     environment:
-      MYSQL_ROOT_PASSWORD: example-password
+      "MYSQL_ROOT_PASSWORD": "example-password"
 ```
 
 Or you can use `docker run` directly:
@@ -213,7 +222,7 @@ Or you can use `docker run` directly:
 # mysql
 docker run \
   --name some-mysql \
-  -e MYSQL_ROOT_PASSWORD=example-password \
+  -e "MYSQL_ROOT_PASSWORD=example-password" \
   -d \
   launcher.gcr.io/google/mysql5
 
@@ -235,15 +244,17 @@ For information about how to retain your Wordpress installation across restarts,
 Instead of spinning up a MySQL container, we can connect Wordpress to any running MySQL database instance (assumed to be running at `some.mysql.host`) by specifying its hostname via environment variable `WORDPRESS_DB_HOST`. Database username and password also have to be explicitly specified to connect to the database instance via `WORDPRESS_DB_USER` and `WORDPRESS_DB_PASSWORD`.
 
 Use the following content for the `docker-compose.yml` file, then run `docker-compose up`.
+
 ```yaml
 version: '2'
 services:
   wordpress:
+    container_name: some-wordpress
     image: launcher.gcr.io/google/wordpress4-php5-apache
     environment:
-      WORDPRESS_DB_HOST: some.mysql.host:3306
-      WORDPRESS_DB_PASSWORD: example-password
-      WORDPRESS_DB_USER: root
+      "WORDPRESS_DB_HOST": "some.mysql.host:3306"
+      "WORDPRESS_DB_PASSWORD": "example-password"
+      "WORDPRESS_DB_USER": "root"
     ports:
       - '8080:80'
 ```
@@ -253,9 +264,9 @@ Or you can use `docker run` directly:
 ```shell
 docker run \
   --name some-wordpress \
-  -e WORDPRESS_DB_HOST=some.mysql.host:3306 \
-  -e WORDPRESS_DB_PASSWORD=example-password \
-  -e WORDPRESS_DB_USER=root \
+  -e "WORDPRESS_DB_HOST=some.mysql.host:3306" \
+  -e "WORDPRESS_DB_PASSWORD=example-password" \
+  -e "WORDPRESS_DB_USER=root" \
   -p 8080:80 \
   -d \
   launcher.gcr.io/google/wordpress4-php5-apache
@@ -266,13 +277,15 @@ docker run \
 We can store data on persistent volumes for both MySQL and Wordpress. This way the installation remains intact across restarts. Assume that `/my/persistent/dir/wordpress` and `/my/persistent/dir/mysql` are the two persistent directories on the host.
 
 Use the following content for the `docker-compose.yml` file, then run `docker-compose up`.
+
 ```yaml
 version: '2'
 services:
   wordpress:
+    container_name: some-wordpress
     image: launcher.gcr.io/google/wordpress4-php5-apache
     environment:
-      WORDPRESS_DB_PASSWORD: example-password
+      "WORDPRESS_DB_PASSWORD": "example-password"
     ports:
       - '8080:80'
     volumes:
@@ -282,7 +295,7 @@ services:
   mysql:
     image: launcher.gcr.io/google/mysql5
     environment:
-      MYSQL_ROOT_PASSWORD: example-password
+      "MYSQL_ROOT_PASSWORD": "example-password"
     volumes:
       - /my/persistent/dir/mysql:/var/lib/mysql
 ```
@@ -293,7 +306,7 @@ Or you can use `docker run` directly:
 # mysql
 docker run \
   --name some-mysql \
-  -e MYSQL_ROOT_PASSWORD=example-password \
+  -e "MYSQL_ROOT_PASSWORD=example-password" \
   -v /my/persistent/dir/mysql:/var/lib/mysql \
   -d \
   launcher.gcr.io/google/mysql5
@@ -317,6 +330,7 @@ To keep the image size small, this image doesn’t include additional PHP extens
 If you need to install additional PHP extensions, for example because a plugin requires them, you can extend the image as follows.
 
 Use the following content for the `Dockerfile` file:
+
 ```dockerfile
 FROM launcher.gcr.io/google/wordpress4-php5-apache
 RUN apt-get update \
@@ -325,6 +339,7 @@ RUN apt-get update \
 ```
 
 Then build the image with:
+
 ```shell
 docker build -t my-wordpress4-php5-apache
 ```
