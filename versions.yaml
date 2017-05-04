@@ -27,6 +27,9 @@ versions:
       wordpress: &wordpress
         version: 4.6.1
         sha1: 027e065d30a64720624a7404a1820e6c6fff1202
+    # TODO: remove excluded tests once they're fixed
+    excludeTests: &nonFpmTests
+    - tests/functional_tests/running_test.yaml
   - dir: php5.6/fpm
     repo: wordpress4-php5-fpm
     tags: *tags
@@ -34,6 +37,8 @@ versions:
     cmd: php-fpm
     packages:
       wordpress: *wordpress
+    excludeTests: &nonFpmTests
+    - tests/functional_tests/running_test.yaml
   - dir: php7.0/apache
     repo: wordpress4-php7-apache
     tags: *tags
@@ -41,6 +46,9 @@ versions:
     cmd: apache2-foreground
     packages:
       wordpress: *wordpress
+    # TODO: remove excluded tests once they're fixed
+    excludeTests: &nonFpmTests
+    - tests/functional_tests/running_test.yaml
   - dir: php7.0/fpm
     repo: wordpress4-php7-fpm
     tags: *tags
@@ -48,5 +56,4 @@ versions:
     cmd: php-fpm
     packages:
       wordpress: *wordpress
-
-
+    excludeTests: *nonFpmTests
