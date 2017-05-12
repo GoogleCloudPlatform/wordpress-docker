@@ -15,13 +15,16 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 setup:
-- command: [docker, run, --privileged=true, --name, some-mysql, -e, 'MYSQL_ROOT_PASSWORD=example-password', -d, 'launcher.gcr.io/google/mysql5']
-- command: [docker, run, --privileged=true, --name, some-wordpress, -p, '8080:80', --link, 'some-mysql:mysql', -d, '$IMAGE']
-- command: [sleep, 45s]
+- command: [docker, network, create, -d, bridge, testbridge]
+- command: [docker, run, --net, testbridge, --name, some-mysql, -e, 'MYSQL_ROOT_PASSWORD=example-password', -d, launcher.gcr.io/google/mysql5]
+- command: [sleep, 20s]
+- command: [docker, run, --net, testbridge, --name, some-wordpress, -e, 'WORDPRESS_DB_HOST=some-mysql', -e, 'WORDPRESS_DB_PASSWORD=example-password', -d, '$IMAGE']
+- command: [sleep, 25s]
 
 teardown:
 - command: [docker, stop, some-wordpress, some-mysql]
 - command: [docker, rm, some-wordpress, some-mysql]
+- command: [docker, network, rm, testbridge]
 
 target: some-wordpress
 tests:
