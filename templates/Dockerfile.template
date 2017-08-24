@@ -20,7 +20,7 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-{{- if or (eq .Dir "php5.6/apache") (eq .Dir "php7.0/apache") }}
+{{- if or (eq .Dir "php5.6/apache") (eq .Dir "php7/apache") }}
 RUN a2enmod rewrite expires
 {{- end }}
 

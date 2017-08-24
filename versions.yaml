@@ -35,14 +35,14 @@ versions:
       wordpress: *wordpress
     excludeTests: &nonFpmTests
     - tests/functional_tests/running_test.yaml
-  - dir: php7.0/apache
+  - dir: php7/apache
     repo: wordpress4-php7-apache
     tags: *tags
     from: gcr.io/cloud-marketplace-ops/php7-apache
     cmd: apache2-foreground
     packages:
       wordpress: *wordpress
-  - dir: php7.0/fpm
+  - dir: php7/fpm
     repo: wordpress4-php7-fpm
     tags: *tags
     from: gcr.io/cloud-marketplace-ops/php7-fpm
