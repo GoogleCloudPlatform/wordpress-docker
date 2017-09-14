@@ -1,18 +1,18 @@
 # <a name="about"></a>About
 
 This image contains an installation of WordPress 4.x served by an Apache HTTP
-Server on a PHP 5.x runtime.
+Server on a PHP 7.x runtime.
 
 For more information, see the
-[Official Image Launcher Page](https://console.cloud.google.com/launcher/details/google/wordpress4-php5-apache).
+[Official Image Launcher Page](https://console.cloud.google.com/launcher/details/google/wordpress4-php7-apache).
 
 Pull command (first install [gcloud](https://cloud.google.com/sdk/downloads)):
 
 ```shell
-gcloud docker -- pull launcher.gcr.io/google/wordpress4-php5-apache
+gcloud docker -- pull launcher.gcr.io/google/wordpress4-php7-apache
 ```
 
-Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/php5.6/apache).
+Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/php7/apache).
 
 # <a name="table-of-contents"></a>Table of Contents
 * [Using Kubernetes](#using-kubernetes)
@@ -56,7 +56,7 @@ metadata:
     name: some-wordpress
 spec:
   containers:
-    - image: launcher.gcr.io/google/wordpress4-php5-apache
+    - image: launcher.gcr.io/google/wordpress4-php7-apache
       name: wordpress
       env:
         - name: "WORDPRESS_DB_HOST"
@@ -97,7 +97,7 @@ metadata:
     name: some-wordpress
 spec:
   containers:
-    - image: launcher.gcr.io/google/wordpress4-php5-apache
+    - image: launcher.gcr.io/google/wordpress4-php7-apache
       name: wordpress
       env:
         - name: "WORDPRESS_DB_HOST"
@@ -133,7 +133,7 @@ metadata:
     name: some-wordpress
 spec:
   containers:
-    - image: launcher.gcr.io/google/wordpress4-php5-apache
+    - image: launcher.gcr.io/google/wordpress4-php7-apache
       name: wordpress
       env:
         - name: "WORDPRESS_DB_HOST"
@@ -218,7 +218,7 @@ version: '2'
 services:
   wordpress:
     container_name: some-wordpress
-    image: launcher.gcr.io/google/wordpress4-php5-apache
+    image: launcher.gcr.io/google/wordpress4-php7-apache
     environment:
       "WORDPRESS_DB_PASSWORD": "example-password"
     ports:
@@ -247,7 +247,7 @@ docker run \
   -p 8080:80 \
   --link some-mysql:mysql \
   -d \
-  launcher.gcr.io/google/wordpress4-php5-apache
+  launcher.gcr.io/google/wordpress4-php7-apache
 ```
 
 Wordpress will be accessible on your localhost at `http://localhost:8080/`.
@@ -265,7 +265,7 @@ version: '2'
 services:
   wordpress:
     container_name: some-wordpress
-    image: launcher.gcr.io/google/wordpress4-php5-apache
+    image: launcher.gcr.io/google/wordpress4-php7-apache
     environment:
       "WORDPRESS_DB_HOST": "some.mysql.host:3306"
       "WORDPRESS_DB_PASSWORD": "example-password"
@@ -284,7 +284,7 @@ docker run \
   -e "WORDPRESS_DB_USER=root" \
   -p 8080:80 \
   -d \
-  launcher.gcr.io/google/wordpress4-php5-apache
+  launcher.gcr.io/google/wordpress4-php7-apache
 ```
 
 ### <a name="run-with-persistent-data-volumes-docker"></a>Run with persistent data volumes
@@ -298,7 +298,7 @@ version: '2'
 services:
   wordpress:
     container_name: some-wordpress
-    image: launcher.gcr.io/google/wordpress4-php5-apache
+    image: launcher.gcr.io/google/wordpress4-php7-apache
     environment:
       "WORDPRESS_DB_PASSWORD": "example-password"
     ports:
@@ -333,7 +333,7 @@ docker run \
   -v /my/persistent/dir/wordpress:/var/www/html \
   --link some-mysql:mysql \
   -d \
-  launcher.gcr.io/google/wordpress4-php5-apache
+  launcher.gcr.io/google/wordpress4-php7-apache
 ```
 
 ## <a name="customizing-wordpress-docker"></a>Customizing Wordpress
@@ -347,7 +347,7 @@ If you need to install additional PHP extensions, for example because a plugin r
 Use the following content for the `Dockerfile` file:
 
 ```dockerfile
-FROM launcher.gcr.io/google/wordpress4-php5-apache
+FROM launcher.gcr.io/google/wordpress4-php7-apache
 RUN apt-get update \
   && apt-get install -y libmcrypt-dev \
   && docker-php-ext-install mcrypt
@@ -356,7 +356,7 @@ RUN apt-get update \
 Then build the image with:
 
 ```shell
-docker build -t my-wordpress4-php5-apache
+docker build -t my-wordpress4-php7-apache
 ```
 
 # <a name="references"></a>References
