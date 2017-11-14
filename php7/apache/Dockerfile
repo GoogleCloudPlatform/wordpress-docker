@@ -1,9 +1,5 @@
 FROM gcr.io/cloud-marketplace-ops/php7-apache
 
-# Get the list of packages from the base image.
-COPY download_source /tmp
-RUN /tmp/download_source blacklist-all-current
-
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev && rm -rf /var/lib/apt/lists/* \
 	&& docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
@@ -40,7 +36,3 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 # ENTRYPOINT resets CMD
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
-
-# Download source code for GPL packages.
-RUN /tmp/download_source download /usr/local/src \
-	&& rm /tmp/download_source
