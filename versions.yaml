@@ -18,23 +18,14 @@ versions:
   - dir: php5.6/apache
     repo: wordpress4-php5-apache
     tags: &tags
-      - '4.8.3'
+      - '4.9'
       - latest
     from: gcr.io/cloud-marketplace-ops/php5-apache
     cmd: apache2-foreground
     packages:
       wordpress: &wordpress
-        version: '4.8.3'
-        sha1: 8efc0b9f6146e143ed419b5419d7bb8400a696fc
-  - dir: php5.6/fpm
-    repo: wordpress4-php5-fpm
-    tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php5-fpm
-    cmd: php-fpm
-    packages:
-      wordpress: *wordpress
-    excludeTests: &nonFpmTests
-    - tests/functional_tests/running_test.yaml
+        version: '4.9'
+        sha1: 6127bd2aed7b7c0a2c1789c8f17a2222a9081d6c
   - dir: php7/apache
     repo: wordpress4-php7-apache
     tags: *tags
@@ -42,11 +33,3 @@ versions:
     cmd: apache2-foreground
     packages:
       wordpress: *wordpress
-  - dir: php7/fpm
-    repo: wordpress4-php7-fpm
-    tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php7-fpm
-    cmd: php-fpm
-    packages:
-      wordpress: *wordpress
-    excludeTests: *nonFpmTests
