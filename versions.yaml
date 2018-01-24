@@ -19,15 +19,15 @@ versions:
   - dir: php5.6/apache
     repo: wordpress4-php5-apache
     tags: &tags
-      - '4.9.1'
+      - '4.9.2'
       - '4.9'
       - latest
     from: gcr.io/cloud-marketplace-ops/php5-apache
     cmd: apache2-foreground
     packages:
       wordpress: &wordpress
-        version: '4.9.1'
-        sha1: 892d2c23b9d458ec3d44de59b753adb41012e903
+        version: '4.9.2'
+        sha1: 96e0b38028b0b2d00209290ebac20cb9f4a6d085
   - dir: php5.6/fpm
     repo: wordpress4-php5-fpm
     tags: *tags
