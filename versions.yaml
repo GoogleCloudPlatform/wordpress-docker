@@ -23,7 +23,8 @@ versions:
       - '4.9'
       - latest
     from: gcr.io/cloud-marketplace-ops/php5-apache
-    cmd: apache2-foreground
+    templateArgs:
+      cmd: apache2-foreground
     packages:
       wordpress: &wordpress
         version: '4.9.4'
@@ -32,7 +33,8 @@ versions:
     repo: wordpress4-php5-fpm
     tags: *tags
     from: gcr.io/cloud-marketplace-ops/php5-fpm
-    cmd: php-fpm
+    templateArgs:
+      cmd: php-fpm
     packages:
       wordpress: *wordpress
     excludeTests: &nonFpmTests
@@ -42,14 +44,16 @@ versions:
     repo: wordpress4-php7-apache
     tags: *tags
     from: gcr.io/cloud-marketplace-ops/php7-apache
-    cmd: apache2-foreground
+    templateArgs:
+      cmd: apache2-foreground
     packages:
       wordpress: *wordpress
   - dir: php7/fpm
     repo: wordpress4-php7-fpm
     tags: *tags
     from: gcr.io/cloud-marketplace-ops/php7-fpm
-    cmd: php-fpm
+    templateArgs:
+      cmd: php-fpm
     packages:
       wordpress: *wordpress
     excludeTests: *nonFpmTests
