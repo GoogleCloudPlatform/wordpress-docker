@@ -1,4 +1,4 @@
-FROM gcr.io/cloud-marketplace-ops/php7-fpm-debian9
+FROM gcr.io/cloud-marketplace-ops/php7-fpm:7.2-debian9
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev && rm -rf /var/lib/apt/lists/* \
