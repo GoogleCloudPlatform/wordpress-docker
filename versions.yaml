@@ -16,23 +16,23 @@
 
 versions:
 
-  - dir: php5.6/apache
+  - dir: php5.6/debian9/apache
     repo: wordpress4-php5-apache
     tags: &tags
       - '4.9.7'
       - '4.9'
       - latest
-    from: gcr.io/cloud-marketplace-ops/php5-apache
+    from: gcr.io/cloud-marketplace-ops/php5-apache-debian9
     templateArgs:
       cmd: apache2-foreground
     packages:
       wordpress: &wordpress
         version: '4.9.7'
         sha1: 7bf349133750618e388e7a447bc9cdc405967b7d
-  - dir: php5.6/fpm
+  - dir: php5.6/debian9/fpm
     repo: wordpress4-php5-fpm
     tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php5-fpm
+    from: gcr.io/cloud-marketplace-ops/php5-fpm-debian9
     templateArgs:
       cmd: php-fpm
     packages:
@@ -40,18 +40,18 @@ versions:
     excludeTests: &nonFpmTests
     - tests/functional_tests/running_test.yaml
 
-  - dir: php7/apache
+  - dir: php7/debian9/apache
     repo: wordpress4-php7-apache
     tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php7-apache
+    from: gcr.io/cloud-marketplace-ops/php7-apache-debian9
     templateArgs:
       cmd: apache2-foreground
     packages:
       wordpress: *wordpress
-  - dir: php7/fpm
+  - dir: php7/debian9/fpm
     repo: wordpress4-php7-fpm
     tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php7-fpm
+    from: gcr.io/cloud-marketplace-ops/php7-fpm-debian9
     templateArgs:
       cmd: php-fpm
     packages:

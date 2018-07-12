@@ -1,6 +1,7 @@
-FROM {{ .From }}
+{{- $isApache := or (eq .Dir "php5.6/debian9/apache") (eq .Dir "php7/debian9/apache") -}}
+{{- $cmd := index .TemplateArgs "cmd" -}}
 
-{{- $Cmd := index .TemplateArgs "cmd" }}
+FROM {{ .From }}
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev && rm -rf /var/lib/apt/lists/* \
@@ -18,7 +19,7 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-{{- if or (eq .Dir "php5.6/apache") (eq .Dir "php7/apache") }}
+{{- if $isApache }}
 RUN a2enmod rewrite expires
 {{- end }}
 
@@ -41,4 +42,4 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 
 # ENTRYPOINT resets CMD
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["{{ $Cmd }}"]
+CMD ["{{ $cmd }}"]
