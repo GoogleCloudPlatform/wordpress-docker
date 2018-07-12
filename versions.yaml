@@ -26,7 +26,7 @@ versions:
       - '4.9.7'
       - '4.9'
       - latest
-    from: gcr.io/cloud-marketplace-ops/php5-apache-debian9
+    from: gcr.io/cloud-marketplace-ops/php5-apache:5.6-debian9
     templateArgs:
       cmd: apache2-foreground
     packages:
@@ -37,7 +37,7 @@ versions:
   - dir: php5.6/debian9/fpm
     repo: wordpress4-php5-fpm
     tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php5-fpm-debian9
+    from: gcr.io/cloud-marketplace-ops/php5-fpm:5.6-debian9
     templateArgs:
       cmd: php-fpm
     packages:
@@ -50,7 +50,7 @@ versions:
   - dir: php7/debian9/apache
     repo: wordpress4-php7-apache
     tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php7-apache-debian9
+    from: gcr.io/cloud-marketplace-ops/php7-apache:7.2-debian9
     templateArgs:
       cmd: apache2-foreground
     packages:
@@ -59,7 +59,7 @@ versions:
   - dir: php7/debian9/fpm
     repo: wordpress4-php7-fpm
     tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php7-fpm-debian9
+    from: gcr.io/cloud-marketplace-ops/php7-fpm:7.2-debian9
     templateArgs:
       cmd: php-fpm
     packages:
