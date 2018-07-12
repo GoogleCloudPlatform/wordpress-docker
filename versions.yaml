@@ -16,6 +16,8 @@
 
 versions:
 
+  # WordPress with PHP 5.6 on Debian 9
+  # Apache
   - dir: php5.6/debian9/apache
     repo: wordpress4-php5-apache
     tags: &tags
@@ -31,6 +33,7 @@ versions:
       wordpress: &wordpress
         version: '4.9.7'
         sha1: 7bf349133750618e388e7a447bc9cdc405967b7d
+  # Fpm
   - dir: php5.6/debian9/fpm
     repo: wordpress4-php5-fpm
     tags: *tags
@@ -42,6 +45,8 @@ versions:
     excludeTests: &nonFpmTests
     - tests/functional_tests/running_test.yaml
 
+  # WordPress with PHP 7.x on Debian 9
+  # Apache
   - dir: php7/debian9/apache
     repo: wordpress4-php7-apache
     tags: *tags
@@ -50,6 +55,7 @@ versions:
       cmd: apache2-foreground
     packages:
       wordpress: *wordpress
+  # Fpm
   - dir: php7/debian9/fpm
     repo: wordpress4-php7-fpm
     tags: *tags
