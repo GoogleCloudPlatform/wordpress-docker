@@ -1,4 +1,4 @@
-FROM gcr.io/cloud-marketplace-ops/php7-apache
+FROM gcr.io/cloud-marketplace-ops/php5-fpm-debian9
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev && rm -rf /var/lib/apt/lists/* \
@@ -15,7 +15,6 @@ RUN { \
 		echo 'opcache.fast_shutdown=1'; \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
-RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
 
@@ -35,4 +34,4 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 
 # ENTRYPOINT resets CMD
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["apache2-foreground"]
+CMD ["php-fpm"]
