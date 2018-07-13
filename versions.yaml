@@ -65,3 +65,6 @@ versions:
     packages:
       wordpress: *wordpress
     excludeTests: *nonFpmTests
+
+cloudbuild:
+  enable_parallel: true
