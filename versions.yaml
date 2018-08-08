@@ -21,9 +21,9 @@ versions:
   - dir: php5.6/debian9/apache
     repo: wordpress4-php5-apache
     tags: &tags
-      - '4.9.7-debian9'
+      - '4.9.8-debian9'
       - '4.9-debian9'
-      - '4.9.7'
+      - '4.9.8'
       - '4.9'
       - latest
     from: gcr.io/cloud-marketplace-ops/php5-apache:5.6-debian9
@@ -31,8 +31,8 @@ versions:
       cmd: apache2-foreground
     packages:
       wordpress: &wordpress
-        version: '4.9.7'
-        sha1: 7bf349133750618e388e7a447bc9cdc405967b7d
+        version: '4.9.8'
+        sha1: 0945bab959cba127531dceb2c4fed81770812b4f
   # Fpm
   - dir: php5.6/debian9/fpm
     repo: wordpress4-php5-fpm
