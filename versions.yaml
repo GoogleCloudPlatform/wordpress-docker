@@ -1,4 +1,4 @@
-# Copyright (C) 2017 Google Inc.
+# Copyright 2017-2018 Google LLC
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,57 +14,61 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+_variables:
+  excludeTests: &nonFpmTests
+  - tests/functional_tests/running_test.yaml
+  wordpress: &wordpress
+    version: '4.9.8'
+    sha1: '0945bab959cba127531dceb2c4fed81770812b4f'
+  tags: &tags
+  - '4.9.8-debian9'
+  - '4.9.8'
+  - 'latest'
+
 versions:
 
-  # WordPress with PHP 5.6 on Debian 9
-  # Apache
-  - dir: php5.6/debian9/apache
-    repo: wordpress4-php5-apache
-    tags: &tags
-      - '4.9.8-debian9'
-      - '4.9-debian9'
-      - '4.9.8'
-      - '4.9'
-      - latest
-    from: gcr.io/cloud-marketplace-ops/php5-apache:5.6-debian9
-    templateArgs:
-      cmd: apache2-foreground
-    packages:
-      wordpress: &wordpress
-        version: '4.9.8'
-        sha1: 0945bab959cba127531dceb2c4fed81770812b4f
-  # Fpm
-  - dir: php5.6/debian9/fpm
-    repo: wordpress4-php5-fpm
+  # WordPress with PHP 5.6-apache on Debian 9
+  - dir: 'php5.6/debian9/apache'
+    repo: 'wordpress4-php5-apache'
     tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php5-fpm:5.6-debian9
+    from: 'gcr.io/cloud-marketplace-ops/php5-apache:5.6-debian9'
     templateArgs:
-      cmd: php-fpm
+      cmd: 'apache2-foreground'
     packages:
       wordpress: *wordpress
-    excludeTests: &nonFpmTests
-    - tests/functional_tests/running_test.yaml
 
-  # WordPress with PHP 7.x on Debian 9
-  # Apache
-  - dir: php7/debian9/apache
-    repo: wordpress4-php7-apache
+  # WordPress with PHP 5.6-fpm on Debian 9
+  - dir: 'php5.6/debian9/fpm'
+    repo: 'wordpress4-php5-fpm'
     tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php7-apache:7.2-debian9
+    from: 'gcr.io/cloud-marketplace-ops/php5-fpm:5.6-debian9'
     templateArgs:
-      cmd: apache2-foreground
-    packages:
-      wordpress: *wordpress
-  # Fpm
-  - dir: php7/debian9/fpm
-    repo: wordpress4-php7-fpm
-    tags: *tags
-    from: gcr.io/cloud-marketplace-ops/php7-fpm:7.2-debian9
-    templateArgs:
-      cmd: php-fpm
+      cmd: 'php-fpm'
     packages:
       wordpress: *wordpress
     excludeTests: *nonFpmTests
 
+  # WordPress with PHP 7.2-apache on Debian 9
+  - dir: 'php7/debian9/apache'
+    repo: 'wordpress4-php7-apache'
+    tags: *tags
+    from: 'gcr.io/cloud-marketplace-ops/php7-apache:7.2-debian9'
+    templateArgs:
+      cmd: 'apache2-foreground'
+    packages:
+      wordpress: *wordpress
+
+  # WordPress with PHP 7.2-fpm on Debian 9
+  - dir: 'php7/debian9/fpm'
+    repo: 'wordpress4-php7-fpm'
+    tags: *tags
+    from: 'gcr.io/cloud-marketplace-ops/php7-fpm:7.2-debian9'
+    templateArgs:
+      cmd: 'php-fpm'
+    packages:
+      wordpress: *wordpress
+    excludeTests: *nonFpmTests
+
+# Enable parallel build.
 cloudbuild:
   enable_parallel: true
