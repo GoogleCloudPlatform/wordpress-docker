@@ -70,6 +70,13 @@ if [[ "$1" == apache2* ]] || [ "$1" == php-fpm ]; then
 			--owner "$user" --group "$group" \
 			. | tar --extract --file -
 		echo >&2 "Complete! WordPress has been successfully copied to $PWD"
+		sed -i "/That's all, stop editing!/ i\
+/*\\
+ * WP_SITEURL and WP_HOME are configured to allow access from any hostname.\\
+ */\\
+define('WP_SITEURL', 'http://' . \$_SERVER['HTTP_HOST'] . '/');\\
+define('WP_HOME', 'http://' . \$_SERVER['HTTP_HOST'] . '/');\\
+" wp-config-sample.php
 		if [ ! -e .htaccess ]; then
 			# NOTE: The "Indexes" option is disabled in the php:apache base image
 			cat > .htaccess <<-'EOF'
