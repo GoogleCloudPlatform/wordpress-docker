@@ -27,42 +27,21 @@ _variables:
 
 versions:
 
-  # WordPress with PHP 5.6-apache on Debian 9
-  - dir: 'php5.6/debian9/apache'
-    repo: 'wordpress4-php5-apache'
-    tags: *tags
-    from: 'gcr.io/cloud-marketplace-ops/php5-apache:5.6-debian9'
-    templateArgs:
-      cmd: 'apache2-foreground'
-    packages:
-      wordpress: *wordpress
-
-  # WordPress with PHP 5.6-fpm on Debian 9
-  - dir: 'php5.6/debian9/fpm'
-    repo: 'wordpress4-php5-fpm'
-    tags: *tags
-    from: 'gcr.io/cloud-marketplace-ops/php5-fpm:5.6-debian9'
-    templateArgs:
-      cmd: 'php-fpm'
-    packages:
-      wordpress: *wordpress
-    excludeTests: *nonFpmTests
-
-  # WordPress with PHP 7.2-apache on Debian 9
+  # WordPress with PHP 7.3-apache on Debian 9
   - dir: 'php7/debian9/apache'
     repo: 'wordpress4-php7-apache'
     tags: *tags
-    from: 'gcr.io/cloud-marketplace-ops/php7-apache:7.2-debian9'
+    from: 'gcr.io/cloud-marketplace-ops/php7-apache:7.3-debian9'
     templateArgs:
       cmd: 'apache2-foreground'
     packages:
       wordpress: *wordpress
 
-  # WordPress with PHP 7.2-fpm on Debian 9
+  # WordPress with PHP 7.3-fpm on Debian 9
   - dir: 'php7/debian9/fpm'
     repo: 'wordpress4-php7-fpm'
     tags: *tags
-    from: 'gcr.io/cloud-marketplace-ops/php7-fpm:7.2-debian9'
+    from: 'gcr.io/cloud-marketplace-ops/php7-fpm:7.3-debian9'
     templateArgs:
       cmd: 'php-fpm'
     packages:
