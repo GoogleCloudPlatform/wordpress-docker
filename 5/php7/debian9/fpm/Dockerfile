@@ -1,8 +1,4 @@
-{{- $isApache := or (eq .Dir "4/php7/debian9/apache") (eq .Dir "5/php7/debian9/apache") -}}
-{{- $wordpress := index .Packages "wordpress" -}}
-{{- $cmd := index .TemplateArgs "cmd" -}}
-
-FROM {{ .From }}
+FROM gcr.io/cloud-marketplace-ops/php7-fpm:7.3-debian9
 
 # install the PHP extensions we need
 RUN set -ex; \
@@ -44,14 +40,10 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-{{- if $isApache }}
-RUN a2enmod rewrite expires
-{{- end }}
-
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION {{ $wordpress.Version }}
-ENV WORDPRESS_SHA1 {{ $wordpress.Sha1 }}
+ENV WORDPRESS_VERSION 5.0.3
+ENV WORDPRESS_SHA1 f9a4b482288b5be7a71e9f3dc9b5b0c1f881102b
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
@@ -64,4 +56,4 @@ RUN set -ex; \
 COPY docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["{{ $cmd }}"]
+CMD ["php-fpm"]
