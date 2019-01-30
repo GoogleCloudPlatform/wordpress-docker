@@ -1,4 +1,4 @@
-FROM gcr.io/cloud-marketplace-ops/php7-fpm:7.3-debian9
+FROM gcr.io/cloud-marketplace-ops/php7-apache:7.3-debian9
 
 # install the PHP extensions we need
 RUN set -ex; \
@@ -39,11 +39,12 @@ RUN { \
 		echo 'opcache.fast_shutdown=1'; \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
+RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 4.9.9
-ENV WORDPRESS_SHA1 10678608e8b7f373ca906c8966c09faffe27e5ae
+ENV WORDPRESS_VERSION 5.0.3
+ENV WORDPRESS_SHA1 f9a4b482288b5be7a71e9f3dc9b5b0c1f881102b
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
@@ -56,4 +57,4 @@ RUN set -ex; \
 COPY docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["php-fpm"]
+CMD ["apache2-foreground"]
