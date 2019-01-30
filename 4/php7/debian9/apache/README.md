@@ -12,7 +12,7 @@ Pull command (first install [gcloud](https://cloud.google.com/sdk/downloads)):
 gcloud docker -- pull launcher.gcr.io/google/wordpress4-php7-apache
 ```
 
-Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/php7/apache).
+Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/4/php7/debian9/apache).
 
 # <a name="table-of-contents"></a>Table of Contents
 * [Using Kubernetes](#using-kubernetes)

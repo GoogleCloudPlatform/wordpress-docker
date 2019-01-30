@@ -49,7 +49,7 @@ overview:
 
     For more information, see the
     [Official Image Launcher Page](https://console.cloud.google.com/launcher/details/google/wordpress4-php7-apache).
-  dockerfileUrl: https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/php7/apache
+  dockerfileUrl: https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/4/php7/debian9/apache
   pullCommand: *PullCommand
 
 taskGroups:
