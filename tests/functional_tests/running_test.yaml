@@ -32,7 +32,7 @@ tests:
   command: [grep, 'DB_PASSWORD', '/var/www/html/wp-config.php']
   expect:
     stdout:
-      matches: define(\s?'DB_PASSWORD', 'example-password');
+      matches: define\(\s?'DB_PASSWORD', 'example-password'\);
 - name: Test wordpress
   command: [curl, -L, 'http://localhost']
   expect:
