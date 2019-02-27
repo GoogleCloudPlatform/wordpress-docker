@@ -32,6 +32,7 @@ tests:
   command: [grep, 'DB_PASSWORD', '/var/www/html/wp-config.php']
   expect:
     stdout:
+      # regex to match space added in 5.1 version
       matches: define\(\s?'DB_PASSWORD', 'example-password'\);
 - name: Test wordpress
   command: [curl, -L, 'http://localhost']
