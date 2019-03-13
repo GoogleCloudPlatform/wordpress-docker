@@ -18,11 +18,11 @@ _variables:
   excludeTests: &nonFpmTests
   - tests/functional_tests/running_test.yaml
   wordpress: &wordpress
-    version: '5.1'
-    sha1: '830eadf0afa15928d7f6856b1b85bf57b8e1f585'
+    version: '5.1.1'
+    sha1: 'f1bff89cc360bf5ef7086594e8a9b68b4cbf2192'
   tags: &tags
-  - '5.1-debian9'
-  - '5.1'
+  - '5.1.1-debian9'
+  - '5.1.1'
   - 'latest'
 
 versions:
