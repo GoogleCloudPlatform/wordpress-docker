@@ -72,14 +72,14 @@ versions:
     repo: 'wordpress5-php7-apache'
     templateSubDir: exporter
     tags:
-      - 'exporter'
-      - 'exporter-0.5.0'
+    - 'exporter'
+    - 'exporter-0.5.0'
     from: gcr.io/google-appengine/debian9:latest
     packages:
       apache_exporter:
         version: '0.5.0'
     excludeTests:
-      - tests/functional_tests/running_test.yaml
+    - tests/functional_tests/running_test.yaml
 
 # Enable parallel build.
 cloudbuild:
