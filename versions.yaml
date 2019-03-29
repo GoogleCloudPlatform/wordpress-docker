@@ -15,8 +15,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 _variables:
-  excludeTests: &nonFpmTests
-  - tests/functional_tests/running_test.yaml
   wordpress: &wordpress
     version: '5.1.1'
     sha1: 'f1bff89cc360bf5ef7086594e8a9b68b4cbf2192'
@@ -30,28 +28,35 @@ versions:
   # WordPress 5 with PHP 7.3-apache on Debian 9
   - dir: '5/php7/debian9/apache'
     repo: 'wordpress5-php7-apache'
+    templateSubDir: debian9
     tags: *tags
     from: 'gcr.io/cloud-marketplace-ops/php7-apache:7.3-debian9'
     templateArgs:
       cmd: 'apache2-foreground'
     packages:
       wordpress: *wordpress
+    excludeTests:
+    - tests/functional_tests/apache_exporter_test.yaml
 
   # WordPress 5 with PHP 7.3-fpm on Debian 9
   - dir: '5/php7/debian9/fpm'
     repo: 'wordpress5-php7-fpm'
+    templateSubDir: debian9
     tags: *tags
     from: 'gcr.io/cloud-marketplace-ops/php7-fpm:7.3-debian9'
     templateArgs:
       cmd: 'php-fpm'
     packages:
       wordpress: *wordpress
-    excludeTests: *nonFpmTests
+    excludeTests:
+    - tests/functional_tests/running_test.yaml
+    - tests/functional_tests/apache_exporter_test.yaml
 
   # WordPress 4 with PHP 7.3-apache on Debian 9
   # This version is deprecated.
   - dir: '4/php7/debian9/apache'
     repo: 'wordpress4-php7-apache'
+    templateSubDir: debian9
     tags:
     - '4.9.9-debian9'
     - '4.9.9'
@@ -63,6 +68,22 @@ versions:
       wordpress:
         version: '4.9.9'
         sha1: '10678608e8b7f373ca906c8966c09faffe27e5ae'
+    excludeTests:
+    - tests/functional_tests/apache_exporter_test.yaml
+
+  # Apache Exporter for Prometheus
+  - dir: 'exporter'
+    repo: 'wordpress5-php7-apache'
+    templateSubDir: exporter
+    tags:
+    - 'exporter'
+    - 'exporter-0.5.0'
+    from: gcr.io/google-appengine/debian9:latest
+    packages:
+      apache_exporter:
+        version: '0.5.0'
+    excludeTests:
+    - tests/functional_tests/running_test.yaml
 
 # Enable parallel build.
 cloudbuild:
