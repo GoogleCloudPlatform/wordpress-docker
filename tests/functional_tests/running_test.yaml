@@ -34,6 +34,16 @@ tests:
     stdout:
       # regex to match space added in 5.1 version
       matches: define\(\s?'DB_PASSWORD', 'example-password'\);
+- name: WP_SITEURL is configured to allow access from any hostname
+  command: [grep, define('WP_SITEURL', '/var/www/html/wp-config.php']
+  expect:
+    stdout:
+      equals: define('WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] . '/');
+- name: WP_HOME is configured to allow access from any hostname
+  command: [grep, define('WP_HOME', '/var/www/html/wp-config.php']
+  expect:
+    stdout:
+      equals: define('WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] . '/');
 - name: Test wordpress
   command: [curl, -L, 'http://localhost']
   expect:
