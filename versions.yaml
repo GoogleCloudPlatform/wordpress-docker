@@ -16,11 +16,11 @@
 
 _variables:
   wordpress: &wordpress
-    version: '5.1.1'
-    sha1: 'f1bff89cc360bf5ef7086594e8a9b68b4cbf2192'
+    version: '5.2.1'
+    sha1: '65913a39b2e8990ece54efbfa8966fc175085794'
   tags: &tags
-  - '5.1.1-debian9'
-  - '5.1.1'
+  - '5.2.1-debian9'
+  - '5.2.1'
   - 'latest'
 
 versions:
