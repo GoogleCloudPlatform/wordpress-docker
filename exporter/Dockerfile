@@ -16,7 +16,7 @@ RUN set -eux \
         tar \
         git \
         make \
-	gcc
+        gcc
 
 # Installs golang version ${GO_VERSION}
 RUN set -eux \
