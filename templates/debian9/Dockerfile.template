@@ -53,6 +53,8 @@ VOLUME /var/www/html
 ENV WORDPRESS_VERSION {{ $wordpress.Version }}
 ENV WORDPRESS_SHA1 {{ $wordpress.Sha1 }}
 
+ENV C2D_RELEASE=${WORDPRESS_VERSION}
+
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
 	echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c -; \
