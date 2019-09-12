@@ -79,9 +79,13 @@ versions:
     - 'exporter'
     - 'exporter-0.5.0'
     from: gcr.io/google-appengine/debian9:latest
+    templateArgs:
+      exporter_notices_check_sum: '28baca3649151b2b68f5d4e1b07d225c99b435e3f59d3d4e9b6e19d747c3d8d2'
     packages:
       apache_exporter:
         version: '0.5.0'
+      golang:
+        version: '1.13'
     excludeTests:
     - tests/functional_tests/running_test.yaml
 

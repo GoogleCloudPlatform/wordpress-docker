@@ -1,19 +1,27 @@
 FROM gcr.io/google-appengine/debian9:latest as exporter-builder
 
 ENV GOPATH /usr/local
+ENV GOROOT /usr/local/go
+ENV GO_VERSION 1.13
+ENV PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
 ENV EXPORTER_VERSION 0.5.0
-ENV NOTICES_SHA256 4119627c4a0288a54a067106149aa0c54f80b1055be4224cd2a42b5aa2e2a4d8
+ENV NOTICES_SHA256 28baca3649151b2b68f5d4e1b07d225c99b435e3f59d3d4e9b6e19d747c3d8d2
 
 # Installs packages
 RUN set -eux \
     && apt-get update \
     && apt-get install -y \
         curl \
-        golang \
         govendor \
         tar \
         git \
-        make
+        make \
+        gcc
+
+# Installs golang version ${GO_VERSION}
+RUN set -eux \
+    && curl -L -o /tmp/go${GO_VERSION}.linux-amd64.tar.gz "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz" \
+    && tar -xzf /tmp/go${GO_VERSION}.linux-amd64.tar.gz -C ${GOPATH}
 
 RUN set -eux \
     # Downloads source code
