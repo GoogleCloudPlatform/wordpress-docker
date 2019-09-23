@@ -15,6 +15,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 
+
 _variables:
   wordpress: &wordpress
     version: '5.2.3'
