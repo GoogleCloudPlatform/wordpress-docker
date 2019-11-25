@@ -16,11 +16,11 @@
 
 _variables:
   wordpress: &wordpress
-    version: '5.2.4'
-    sha1: '9eb002761fc8b424727d8c9d291a6ecfde0c53b7'
+    version: '5.3'
+    sha1: 'e3edcb1131e539c2b2e10fed37f8b6683c824a98'
   tags: &tags
-  - '5.2.4-debian9'
-  - '5.2.4'
+  - '5.3-debian9'
+  - '5.3'
   - 'latest'
 
 versions:
@@ -58,16 +58,16 @@ versions:
     repo: 'wordpress4-php7-apache'
     templateSubDir: debian9
     tags:
-    - '4.9.11-debian9'
-    - '4.9.11'
+    - '4.9.12-debian9'
+    - '4.9.12'
     - 'latest'
     from: 'gcr.io/cloud-marketplace-ops/php7-apache:7.3-debian9'
     templateArgs:
       cmd: 'apache2-foreground'
     packages:
       wordpress:
-        version: '4.9.11'
-        sha1: '1242cb7bcba75c29c7bc013d0dae4c57a94f7083'
+        version: '4.9.12'
+        sha1: '6c19dfceed88a38701aba9eb90007e8fbcdbad47'
     excludeTests:
     - tests/functional_tests/apache_exporter_test.yaml
 
