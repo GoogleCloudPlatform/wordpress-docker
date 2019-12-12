@@ -50,10 +50,10 @@ RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION {{ $wordpress.Version }}
+ENV WORDPRESS_VERSION {{ $wordpress.Minor }}
 ENV WORDPRESS_SHA1 {{ $wordpress.Sha1 }}
 
-ENV C2D_RELEASE=${WORDPRESS_VERSION}
+ENV C2D_RELEASE {{ $wordpress.Version }}
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
