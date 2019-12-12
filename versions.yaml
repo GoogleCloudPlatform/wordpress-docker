@@ -16,8 +16,7 @@
 
 _variables:
   wordpress: &wordpress
-    version: '5.3.0'
-    minor: '5.3'
+    version: '5.3'
     sha1: 'e3edcb1131e539c2b2e10fed37f8b6683c824a98'
   tags: &tags
   - '5.3-debian9'
@@ -34,6 +33,7 @@ versions:
     from: 'gcr.io/cloud-marketplace-ops/php7-apache:7.3-debian9'
     templateArgs:
       cmd: 'apache2-foreground'
+      c2dRelease: '5.3.0'
     packages:
       wordpress: *wordpress
     excludeTests:
@@ -47,6 +47,7 @@ versions:
     from: 'gcr.io/cloud-marketplace-ops/php7-fpm:7.3-debian9'
     templateArgs:
       cmd: 'php-fpm'
+      c2dRelease: '5.3.0'
     packages:
       wordpress: *wordpress
     excludeTests:
@@ -65,10 +66,10 @@ versions:
     from: 'gcr.io/cloud-marketplace-ops/php7-apache:7.3-debian9'
     templateArgs:
       cmd: 'apache2-foreground'
+      c2dRelease: '4.9.12'
     packages:
       wordpress:
         version: '4.9.12'
-        minor: '4.9.12'
         sha1: '6c19dfceed88a38701aba9eb90007e8fbcdbad47'
     excludeTests:
     - tests/functional_tests/apache_exporter_test.yaml
