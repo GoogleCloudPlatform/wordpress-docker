@@ -33,7 +33,7 @@ versions:
     from: 'gcr.io/cloud-marketplace-ops/php7-apache:7.3-debian9'
     templateArgs:
       cmd: 'apache2-foreground'
-      c2d_release: '5.3.0'
+      c2dRelease: '5.3.0'
     packages:
       wordpress: *wordpress
     excludeTests:
@@ -47,7 +47,7 @@ versions:
     from: 'gcr.io/cloud-marketplace-ops/php7-fpm:7.3-debian9'
     templateArgs:
       cmd: 'php-fpm'
-      c2d_release: '5.3.0'
+      c2dRelease: '5.3.0'
     packages:
       wordpress: *wordpress
     excludeTests:
@@ -66,7 +66,7 @@ versions:
     from: 'gcr.io/cloud-marketplace-ops/php7-apache:7.3-debian9'
     templateArgs:
       cmd: 'apache2-foreground'
-      c2d_release: '4.9.12'
+      c2dRelease: '4.9.12'
     packages:
       wordpress:
         version: '4.9.12'
