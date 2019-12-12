@@ -46,7 +46,7 @@ VOLUME /var/www/html
 ENV WORDPRESS_VERSION 4.9.12
 ENV WORDPRESS_SHA1 6c19dfceed88a38701aba9eb90007e8fbcdbad47
 
-ENV C2D_RELEASE 4.9.12
+ENV C2D_RELEASE=${WORDPRESS_VERSION}
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
