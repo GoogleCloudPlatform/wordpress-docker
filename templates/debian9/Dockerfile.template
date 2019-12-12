@@ -1,6 +1,7 @@
 {{- $isApache := or (eq .Dir "4/php7/debian9/apache") (eq .Dir "5/php7/debian9/apache") -}}
 {{- $wordpress := index .Packages "wordpress" -}}
 {{- $cmd := index .TemplateArgs "cmd" -}}
+{{- $c2d_release := index .TemplateArgs "c2d_release" -}}
 
 FROM {{ .From }}
 
@@ -53,7 +54,7 @@ VOLUME /var/www/html
 ENV WORDPRESS_VERSION {{ $wordpress.Version }}
 ENV WORDPRESS_SHA1 {{ $wordpress.Sha1 }}
 
-ENV C2D_RELEASE=${WORDPRESS_VERSION}
+ENV C2D_RELEASE {{ $c2d_release }}
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
