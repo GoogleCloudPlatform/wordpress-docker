@@ -16,9 +16,11 @@
 
 _variables:
   wordpress: &wordpress
-    version: '5.3'
-    sha1: 'e3edcb1131e539c2b2e10fed37f8b6683c824a98'
+    version: '5.3.2'
+    sha1: 'fded476f112dbab14e3b5acddd2bcfa550e7b01b'
   tags: &tags
+  - '5.3.2-debian9'
+  - '5.3.2'
   - '5.3-debian9'
   - '5.3'
   - 'latest'
@@ -33,7 +35,7 @@ versions:
     from: 'gcr.io/cloud-marketplace-ops/php7-apache:7.3-debian9'
     templateArgs:
       cmd: 'apache2-foreground'
-      c2dRelease: '5.3.0'
+      c2dRelease: '5.3.2'
     packages:
       wordpress: *wordpress
     excludeTests:
@@ -47,7 +49,7 @@ versions:
     from: 'gcr.io/cloud-marketplace-ops/php7-fpm:7.3-debian9'
     templateArgs:
       cmd: 'php-fpm'
-      c2dRelease: '5.3.0'
+      c2dRelease: '5.3.2'
     packages:
       wordpress: *wordpress
     excludeTests:
