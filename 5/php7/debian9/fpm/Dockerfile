@@ -1,4 +1,4 @@
-FROM gcr.io/cloud-marketplace-ops/php7-fpm:7.3-debian9
+FROM marketplace.gcr.io/google/php7-apache2:7.3
 
 # install the PHP extensions we need
 RUN set -ex; \
