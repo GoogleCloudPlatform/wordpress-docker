@@ -82,13 +82,13 @@ versions:
     templateSubDir: exporter
     tags:
     - 'exporter'
-    - 'exporter-0.5.0'
+    - 'exporter-0.8.0'
     from: marketplace.gcr.io/google/debian9:latest
     templateArgs:
-      exporter_notices_check_sum: '28baca3649151b2b68f5d4e1b07d225c99b435e3f59d3d4e9b6e19d747c3d8d2'
+      exporter_notices_check_sum: '0be64dd674a0e4124a4b0d97269e1810027999ad38e12741e4dd25d3c0bfc74e'
     packages:
       apache_exporter:
-        version: '0.5.0'
+        version: '0.8.0'
       golang:
         version: '1.13'
     excludeTests:
