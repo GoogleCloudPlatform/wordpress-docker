@@ -9,7 +9,7 @@ For more information, see the
 Pull command (first install [gcloud](https://cloud.google.com/sdk/downloads)):
 
 ```shell
-gcloud docker -- pull launcher.gcr.io/google/wordpress5-php7-apache
+gcloud docker -- pull marketplace.gcr.io/google/wordpress5-php7-apache
 ```
 
 Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/5/php7/debian9/apache).
@@ -56,14 +56,14 @@ metadata:
     name: some-wordpress
 spec:
   containers:
-    - image: launcher.gcr.io/google/wordpress5-php7-apache
+    - image: marketplace.gcr.io/google/wordpress5-php7-apache
       name: wordpress
       env:
         - name: "WORDPRESS_DB_HOST"
           value: "127.0.0.1:3306"
         - name: "WORDPRESS_DB_PASSWORD"
           value: "example-password"
-    - image: launcher.gcr.io/google/mysql5
+    - image: marketplace.gcr.io/google/mysql5
       name: mysql
       env:
         - name: "MYSQL_ROOT_PASSWORD"
@@ -97,7 +97,7 @@ metadata:
     name: some-wordpress
 spec:
   containers:
-    - image: launcher.gcr.io/google/wordpress5-php7-apache
+    - image: marketplace.gcr.io/google/wordpress5-php7-apache
       name: wordpress
       env:
         - name: "WORDPRESS_DB_HOST"
@@ -133,7 +133,7 @@ metadata:
     name: some-wordpress
 spec:
   containers:
-    - image: launcher.gcr.io/google/wordpress5-php7-apache
+    - image: marketplace.gcr.io/google/wordpress5-php7-apache
       name: wordpress
       env:
         - name: "WORDPRESS_DB_HOST"
@@ -144,7 +144,7 @@ spec:
         - name: wordpress-data
           mountPath: /var/www/html
           subPath: wp
-    - image: launcher.gcr.io/google/mysql5
+    - image: marketplace.gcr.io/google/mysql5
       name: mysql
       env:
         - name: "MYSQL_ROOT_PASSWORD"
@@ -218,7 +218,7 @@ version: '2'
 services:
   wordpress:
     container_name: some-wordpress
-    image: launcher.gcr.io/google/wordpress5-php7-apache
+    image: marketplace.gcr.io/google/wordpress5-php7-apache
     environment:
       "WORDPRESS_DB_PASSWORD": "example-password"
     ports:
@@ -226,7 +226,7 @@ services:
     depends_on:
       - mysql
   mysql:
-    image: launcher.gcr.io/google/mysql5
+    image: marketplace.gcr.io/google/mysql5
     environment:
       "MYSQL_ROOT_PASSWORD": "example-password"
 ```
@@ -239,7 +239,7 @@ docker run \
   --name some-mysql \
   -e "MYSQL_ROOT_PASSWORD=example-password" \
   -d \
-  launcher.gcr.io/google/mysql5
+  marketplace.gcr.io/google/mysql5
 
 # wordpress
 docker run \
@@ -247,7 +247,7 @@ docker run \
   -p 8080:80 \
   --link some-mysql:mysql \
   -d \
-  launcher.gcr.io/google/wordpress5-php7-apache
+  marketplace.gcr.io/google/wordpress5-php7-apache
 ```
 
 Wordpress will be accessible on your localhost at `http://localhost:8080/`.
@@ -265,7 +265,7 @@ version: '2'
 services:
   wordpress:
     container_name: some-wordpress
-    image: launcher.gcr.io/google/wordpress5-php7-apache
+    image: marketplace.gcr.io/google/wordpress5-php7-apache
     environment:
       "WORDPRESS_DB_HOST": "some.mysql.host:3306"
       "WORDPRESS_DB_PASSWORD": "example-password"
@@ -284,7 +284,7 @@ docker run \
   -e "WORDPRESS_DB_USER=root" \
   -p 8080:80 \
   -d \
-  launcher.gcr.io/google/wordpress5-php7-apache
+  marketplace.gcr.io/google/wordpress5-php7-apache
 ```
 
 ### <a name="run-with-persistent-data-volumes-docker"></a>Run with persistent data volumes
@@ -298,7 +298,7 @@ version: '2'
 services:
   wordpress:
     container_name: some-wordpress
-    image: launcher.gcr.io/google/wordpress5-php7-apache
+    image: marketplace.gcr.io/google/wordpress5-php7-apache
     environment:
       "WORDPRESS_DB_PASSWORD": "example-password"
     ports:
@@ -308,7 +308,7 @@ services:
     depends_on:
       - mysql
   mysql:
-    image: launcher.gcr.io/google/mysql5
+    image: marketplace.gcr.io/google/mysql5
     environment:
       "MYSQL_ROOT_PASSWORD": "example-password"
     volumes:
@@ -324,7 +324,7 @@ docker run \
   -e "MYSQL_ROOT_PASSWORD=example-password" \
   -v /my/persistent/dir/mysql:/var/lib/mysql \
   -d \
-  launcher.gcr.io/google/mysql5
+  marketplace.gcr.io/google/mysql5
 
 # wordpress
 docker run \
@@ -333,7 +333,7 @@ docker run \
   -v /my/persistent/dir/wordpress:/var/www/html \
   --link some-mysql:mysql \
   -d \
-  launcher.gcr.io/google/wordpress5-php7-apache
+  marketplace.gcr.io/google/wordpress5-php7-apache
 ```
 
 ## <a name="customizing-wordpress-docker"></a>Customizing Wordpress
@@ -347,7 +347,7 @@ If you need to install additional PHP extensions, for example because a plugin r
 Use the following content for the `Dockerfile` file:
 
 ```dockerfile
-FROM launcher.gcr.io/google/wordpress5-php7-apache
+FROM marketplace.gcr.io/google/wordpress5-php7-apache
 RUN apt-get update \
   && apt-get install -y libmcrypt-dev \
   && docker-php-ext-install mcrypt
