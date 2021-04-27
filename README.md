@@ -1,31 +1,44 @@
+wordpress-docker
+============
+
+Dockerfile source for WordPress [docker](https://docker.io) image.
+
+# Upstream
+
+This source repo was originally copied from:
+https://github.com/docker-library/wordpress
+
+# Disclaimer
+
+This is not an official Google product.
+
 # <a name="about"></a>About
 
-This image contains an installation of WordPress 5.x served by an Apache HTTP
-Server on a PHP 7.x runtime.
+This image contains an installation of WordPress served by an Apache HTTP
+Server on a PHP runtime.
 
 For more information, see the
-[Official Image Launcher Page](https://console.cloud.google.com/launcher/details/google/wordpress5-php7-apache).
+[Official Image Marketplace Page](https://console.cloud.google.com/marketplace/details/google/wordpress5-php7-apache).
 
 Pull command (first install [gcloud](https://cloud.google.com/sdk/downloads)):
+
+Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/5/php7/debian9/apache).
 
 ```shell
 gcloud docker -- pull marketplace.gcr.io/google/wordpress5-php7-apache
 ```
-
-Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/5/php7/debian9/apache).
-
 # <a name="table-of-contents"></a>Table of Contents
 * [Using Kubernetes](#using-kubernetes)
-  * [Running Wordpress](#running-wordpress-kubernetes)
-    * [Run Wordpress and MySQL containers](#run-wordpress-and-mysql-containers-kubernetes)
-    * [Run Wordpress connecting to an external MySQL service](#run-wordpress-connecting-to-an-external-mysql-service-kubernetes)
+  * [Running WordPress](#running-wordpress-kubernetes)
+    * [Run WordPress and MySQL containers](#run-wordpress-and-mysql-containers-kubernetes)
+    * [Run WordPress connecting to an external MySQL service](#run-wordpress-connecting-to-an-external-mysql-service-kubernetes)
     * [Run with persistent data volumes](#run-with-persistent-data-volumes-kubernetes)
 * [Using Docker](#using-docker)
-  * [Running Wordpress](#running-wordpress-docker)
-    * [Run Wordpress and MySQL containers](#run-wordpress-and-mysql-containers-docker)
-    * [Run Wordpress connecting to an external MySQL service](#run-wordpress-connecting-to-an-external-mysql-service-docker)
+  * [Running WordPress](#running-wordpress-docker)
+    * [Run WordPress and MySQL containers](#run-wordpress-and-mysql-containers-docker)
+    * [Run WordPress connecting to an external MySQL service](#run-wordpress-connecting-to-an-external-mysql-service-docker)
     * [Run with persistent data volumes](#run-with-persistent-data-volumes-docker)
-  * [Customizing Wordpress](#customizing-wordpress-docker)
+  * [Customizing WordPress](#customizing-wordpress-docker)
     * [Install additional PHP extensions](#install-additional-php-extensions-docker)
 * [References](#references)
   * [Ports](#references-ports)
@@ -34,16 +47,16 @@ Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlat
 
 # <a name="using-kubernetes"></a>Using Kubernetes
 
-Consult [Launcher container documentation](https://cloud.google.com/launcher/docs/launcher-container)
+Consult [Marketplace container documentation](https://cloud.google.com/marketplace/docs/container-images)
 for additional information about setting up your Kubernetes environment.
 
-## <a name="running-wordpress-kubernetes"></a>Running Wordpress
+## <a name="running-wordpress-kubernetes"></a>Running WordPress
 
 This section describes how to spin up a Wordpress service using this image.
 
-### <a name="run-wordpress-and-mysql-containers-kubernetes"></a>Run Wordpress and MySQL containers
+### <a name="run-wordpress-and-mysql-containers-kubernetes"></a>Run WordPress and MySQL containers
 
-Wordpress requires a separate MySQL service which can be run in another container.
+WordPress requires a separate MySQL service which can be run in another container.
 
 Copy the following content to `pod.yaml` file, and run `kubectl create -f pod.yaml`.
 
@@ -82,7 +95,7 @@ kubectl expose pod some-wordpress --name some-wordpress-80 \
 
 For information about how to retain your Wordpress installation across restarts, see [Run with persistent data volumes](#run-with-persistent-data-volumes-kubernetes).
 
-### <a name="run-wordpress-connecting-to-an-external-mysql-service-kubernetes"></a>Run Wordpress connecting to an external MySQL service
+### <a name="run-wordpress-connecting-to-an-external-mysql-service-kubernetes"></a>Run WordPress connecting to an external MySQL service
 
 Instead of spinning up a MySQL container, we can connect Wordpress to any running MySQL database instance (assumed to be running at `some.mysql.host`) by specifying its hostname via environment variable `WORDPRESS_DB_HOST`. Database username and password also have to be explicitly specified to connect to the database instance via `WORDPRESS_DB_USER` and `WORDPRESS_DB_PASSWORD`.
 
@@ -120,7 +133,7 @@ kubectl expose pod some-wordpress --name some-wordpress-80 \
 
 ### <a name="run-with-persistent-data-volumes-kubernetes"></a>Run with persistent data volumes
 
-We can store data on persistent volumes for both MySQL and Wordpress. This way the installation remains intact across restarts.
+We can store data on persistent volumes for both MySQL and WordPress. This way the installation remains intact across restarts.
 
 Copy the following content to `pod.yaml` file, and run `kubectl create -f pod.yaml`.
 
@@ -203,13 +216,13 @@ kubectl expose pod some-wordpress --name some-wordpress-80 \
 Consult [Launcher container documentation](https://cloud.google.com/launcher/docs/launcher-container)
 for additional information about setting up your Docker environment.
 
-## <a name="running-wordpress-docker"></a>Running Wordpress
+## <a name="running-wordpress-docker"></a>Running WordPress
 
 This section describes how to spin up a Wordpress service using this image.
 
-### <a name="run-wordpress-and-mysql-containers-docker"></a>Run Wordpress and MySQL containers
+### <a name="run-wordpress-and-mysql-containers-docker"></a>Run WordPress and MySQL containers
 
-Wordpress requires a separate MySQL service which can be run in another container.
+WordPress requires a separate MySQL service which can be run in another container.
 
 Use the following content for the `docker-compose.yml` file, then run `docker-compose up`.
 
@@ -250,13 +263,13 @@ docker run \
   marketplace.gcr.io/google/wordpress5-php7-apache
 ```
 
-Wordpress will be accessible on your localhost at `http://localhost:8080/`.
+WordPress will be accessible on your localhost at `http://localhost:8080/`.
 
 For information about how to retain your Wordpress installation across restarts, see [Run with persistent data volumes](#run-with-persistent-data-volumes-docker).
 
-### <a name="run-wordpress-connecting-to-an-external-mysql-service-docker"></a>Run Wordpress connecting to an external MySQL service
+### <a name="run-wordpress-connecting-to-an-external-mysql-service-docker"></a>Run WordPress connecting to an external MySQL service
 
-Instead of spinning up a MySQL container, we can connect Wordpress to any running MySQL database instance (assumed to be running at `some.mysql.host`) by specifying its hostname via environment variable `WORDPRESS_DB_HOST`. Database username and password also have to be explicitly specified to connect to the database instance via `WORDPRESS_DB_USER` and `WORDPRESS_DB_PASSWORD`.
+Instead of spinning up a MySQL container, we can connect WordPress to any running MySQL database instance (assumed to be running at `some.mysql.host`) by specifying its hostname via environment variable `WORDPRESS_DB_HOST`. Database username and password also have to be explicitly specified to connect to the database instance via `WORDPRESS_DB_USER` and `WORDPRESS_DB_PASSWORD`.
 
 Use the following content for the `docker-compose.yml` file, then run `docker-compose up`.
 
@@ -289,7 +302,7 @@ docker run \
 
 ### <a name="run-with-persistent-data-volumes-docker"></a>Run with persistent data volumes
 
-We can store data on persistent volumes for both MySQL and Wordpress. This way the installation remains intact across restarts. Assume that `/my/persistent/dir/wordpress` and `/my/persistent/dir/mysql` are the two persistent directories on the host.
+We can store data on persistent volumes for both MySQL and WordPress. This way the installation remains intact across restarts. Assume that `/my/persistent/dir/wordpress` and `/my/persistent/dir/mysql` are the two persistent directories on the host.
 
 Use the following content for the `docker-compose.yml` file, then run `docker-compose up`.
 
@@ -336,7 +349,7 @@ docker run \
   marketplace.gcr.io/google/wordpress5-php7-apache
 ```
 
-## <a name="customizing-wordpress-docker"></a>Customizing Wordpress
+## <a name="customizing-wordpress-docker"></a>Customizing WordPress
 
 ### <a name="install-additional-php-extensions-docker"></a>Install additional PHP extensions
 
