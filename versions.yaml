@@ -41,21 +41,6 @@ versions:
     excludeTests:
     - tests/functional_tests/apache_exporter_test.yaml
 
-  # WordPress 5 with PHP 7.3-fpm on Debian 9
-  - dir: '5/php7/debian9/fpm'
-    repo: 'wordpress5-php7-fpm'
-    templateSubDir: debian9
-    tags: *tags
-    from: 'marketplace.gcr.io/google/php7-apache2:7.3'
-    templateArgs:
-      cmd: 'php-fpm'
-      c2dRelease: '5.3.2'
-    packages:
-      wordpress: *wordpress
-    excludeTests:
-    - tests/functional_tests/running_test.yaml
-    - tests/functional_tests/apache_exporter_test.yaml
-
   # Apache Exporter for Prometheus
   - dir: 'exporter'
     repo: 'wordpress5-php7-apache'
