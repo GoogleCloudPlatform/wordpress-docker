@@ -22,17 +22,11 @@ For more information, see the
 
 Pull command (first install [gcloud](https://cloud.google.com/sdk/downloads)):
 
-Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/5/php7/debian9/apache).
-
 ```shell
-gcloud docker -- pull marketplace.gcr.io/google/wordpress5-php7-apache
+gcloud auth configure-docker && docker -- pull marketplace.gcr.io/google/wordpress5-php7-apache
 ```
-WARNING: gcloud docker will not be supported for Docker client versions above 18.03.
-
-As an alternative, use ```gcloud auth configure-docker``` to configure docker to
-use gcloud as a credential helper, then use docker as you would for non-GCR
-registries, e.g.  ``` docker -- pull marketplace.gcr.io/google/wordpress5-php7-apache ```. Add
- ``` --verbosity=error ``` to silence this warning: ``` gcloud docker --verbosity=error -- pull marketplace.gcr.io/google/wordpress5-php7-apache```.
+Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/5/php7/debian9/apache).
+=======
 
 # <a name="table-of-contents"></a>Table of Contents
 * [Using Kubernetes](#using-kubernetes)
