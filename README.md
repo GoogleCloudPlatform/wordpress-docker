@@ -21,10 +21,12 @@ For more information, see the
 [Official Image Marketplace Page](https://console.cloud.google.com/marketplace/details/google/wordpress5-php7-apache).
 
 Pull command (first install [gcloud](https://cloud.google.com/sdk/downloads)):
+
 ```shell
 gcloud auth configure-docker && docker -- pull marketplace.gcr.io/google/wordpress5-php7-apache
 ```
 Dockerfile for this image can be found [here](https://github.com/GoogleCloudPlatform/wordpress-docker/tree/master/5/php7/debian9/apache).
+=======
 
 # <a name="table-of-contents"></a>Table of Contents
 * [Using Kubernetes](#using-kubernetes)
