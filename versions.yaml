@@ -15,7 +15,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
   versions:
     # WordPress 5.3 with PHP 7.3-apache on Debian 9
-  - dir: '5/php7/debian9/apache'
+  - dir: '5/php7/debian9/apache/5.3'
     from: 'marketplace.gcr.io/google/php7-apache2:7.3'
     templateSubDir: debian9
     templateArgs:
@@ -34,7 +34,7 @@
     excludeTests:
     - tests/functional_tests/apache_exporter_test.yaml   
   # WordPress 5.7 with PHP 7.3-apache on Debian 9
-  - dir: '5/php7/debian9/apache'
+  - dir: '5/php7/debian9/apache/5.7'
     from: 'marketplace.gcr.io/google/php7-apache2:7.3'
     templateSubDir: debian9
     templateArgs:
