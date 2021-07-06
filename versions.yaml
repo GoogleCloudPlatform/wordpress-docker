@@ -71,7 +71,6 @@
         version: '1.14'
     excludeTests:
     - tests/functional_tests/running_test.yaml
-
 # Enable parallel build.
 cloudbuild:
   enable_parallel: true
