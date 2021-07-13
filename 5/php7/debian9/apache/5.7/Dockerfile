@@ -39,14 +39,15 @@ RUN { \
 		echo 'opcache.fast_shutdown=1'; \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
+
 RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 5.3.2
-ENV WORDPRESS_SHA1 fded476f112dbab14e3b5acddd2bcfa550e7b01b
+ENV WORDPRESS_VERSION 5.7.2
+ENV WORDPRESS_SHA1 c97c037d942e974eb8524213a505268033aff6c8
 
-ENV C2D_RELEASE 5.3.2
+ENV C2D_RELEASE 5.7.2
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \

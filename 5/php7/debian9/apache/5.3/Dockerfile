@@ -1,8 +1,4 @@
-{{- $wordpress := index .Packages "wordpress" -}}
-{{- $cmd := index .TemplateArgs "cmd" -}}
-{{- $c2dRelease := index .TemplateArgs "c2dRelease" -}}
-
-FROM {{ .From }}
+FROM marketplace.gcr.io/google/php7-apache2:7.3
 
 # install the PHP extensions we need
 RUN set -ex; \
@@ -48,10 +44,10 @@ RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION {{ $wordpress.Version }}
-ENV WORDPRESS_SHA1 {{ $wordpress.Sha1 }}
+ENV WORDPRESS_VERSION 5.3.2
+ENV WORDPRESS_SHA1 fded476f112dbab14e3b5acddd2bcfa550e7b01b
 
-ENV C2D_RELEASE {{ $c2dRelease }}
+ENV C2D_RELEASE 5.3.2
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
@@ -64,4 +60,4 @@ RUN set -ex; \
 COPY docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["{{ $cmd }}"]
+CMD ["apache2-foreground"]

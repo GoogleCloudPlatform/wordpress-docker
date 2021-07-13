@@ -13,34 +13,47 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-_variables:
-  wordpress: &wordpress
-    version: '5.3.2'
-    sha1: 'fded476f112dbab14e3b5acddd2bcfa550e7b01b'
-  tags: &tags
-  - '5.3.2-debian9'
-  - '5.3.2'
-  - '5.3-debian9'
-  - '5.3'
-  - 'latest'
-
-versions:
-
-  # WordPress 5 with PHP 7.3-apache on Debian 9
-  - dir: '5/php7/debian9/apache'
-    repo: 'wordpress5-php7-apache'
-    templateSubDir: debian9
-    tags: *tags
+  versions:
+    # WordPress 5.3 with PHP 7.3-apache on Debian 9
+  - dir: '5/php7/debian9/apache/5.3'
     from: 'marketplace.gcr.io/google/php7-apache2:7.3'
+    templateSubDir: debian9
     templateArgs:
       cmd: 'apache2-foreground'
       c2dRelease: '5.3.2'
     packages:
-      wordpress: *wordpress
+      wordpress:
+        version: '5.3.2'
+        sha1: 'fded476f112dbab14e3b5acddd2bcfa550e7b01b'
+    repo: 'wordpress5-php7-apache' 
+    tags:
+    - 5.3.2-debian9 
+    - 5.3-debian9
+    - '5.3.2'
+    - '5.3'    
     excludeTests:
-    - tests/functional_tests/apache_exporter_test.yaml
-
+    - tests/functional_tests/apache_exporter_test.yaml   
+  # WordPress 5.7 with PHP 7.3-apache on Debian 9
+  - dir: '5/php7/debian9/apache/5.7'
+    from: 'marketplace.gcr.io/google/php7-apache2:7.3'
+    templateSubDir: debian9
+    templateArgs:
+      cmd: 'apache2-foreground'
+      c2dRelease: '5.7.2'
+    packages:
+      wordpress:
+        version: '5.7.2'
+        sha1: 'c97c037d942e974eb8524213a505268033aff6c8'
+    repo: 'wordpress5-php7-apache' 
+    tags:
+    - 5.7.2-debian9 
+    - 5.7-debian9
+    - '5.7.2'
+    - '5.7'
+    - '5'
+    - latest    
+    excludeTests:
+    - tests/functional_tests/apache_exporter_test.yaml   
   # Apache Exporter for Prometheus
   - dir: 'exporter'
     repo: 'wordpress5-php7-apache'
@@ -58,7 +71,6 @@ versions:
         version: '1.14'
     excludeTests:
     - tests/functional_tests/running_test.yaml
-
 # Enable parallel build.
 cloudbuild:
   enable_parallel: true
