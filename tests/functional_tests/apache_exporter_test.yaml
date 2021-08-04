@@ -27,11 +27,11 @@ teardown:
 - command: [docker, network, rm, testbridge-$UNIQUE-id]
 
 target: some-apache-exporter-$UNIQUE-id
-tests:
+tests: 
 - name: Is Apache /metrics HTTP endpoint working
   command:
   - curl
   - http://localhost:9117/metrics
-  expect:
-    stdout:
+  expect: 
+    stdout: 
       matches: '(?m)^apache_up 1$'
