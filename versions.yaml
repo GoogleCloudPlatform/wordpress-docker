@@ -1,4 +1,4 @@
-# Copyright 2017-2018 Google LLC
+# Copyright 2021 Google LLC
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -13,64 +13,48 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-  versions:
-    # WordPress 5.3 with PHP 7.3-apache on Debian 9
-  - dir: '5/php7/debian9/apache/5.3'
-    from: 'marketplace.gcr.io/google/php7-apache2:7.3'
-    templateSubDir: debian9
-    templateArgs:
-      cmd: 'apache2-foreground'
-      c2dRelease: '5.3.2'
-    packages:
-      wordpress:
-        version: '5.3.2'
-        sha1: 'fded476f112dbab14e3b5acddd2bcfa550e7b01b'
-    repo: 'wordpress5-php7-apache' 
-    tags:
-    - 5.3.2-debian9 
-    - 5.3-debian9
-    - '5.3.2'
-    - '5.3'    
-    excludeTests:
-    - tests/functional_tests/apache_exporter_test.yaml   
-  # WordPress 5.7 with PHP 7.3-apache on Debian 9
-  - dir: '5/php7/debian9/apache/5.7'
-    from: 'marketplace.gcr.io/google/php7-apache2:7.3'
-    templateSubDir: debian9
-    templateArgs:
-      cmd: 'apache2-foreground'
-      c2dRelease: '5.7.2'
-    packages:
-      wordpress:
-        version: '5.7.2'
-        sha1: 'c97c037d942e974eb8524213a505268033aff6c8'
-    repo: 'wordpress5-php7-apache' 
-    tags:
-    - 5.7.2-debian9 
-    - 5.7-debian9
-    - '5.7.2'
-    - '5.7'
-    - '5'
-    - latest    
-    excludeTests:
-    - tests/functional_tests/apache_exporter_test.yaml   
-  # Apache Exporter for Prometheus
-  - dir: 'exporter'
-    repo: 'wordpress5-php7-apache'
-    templateSubDir: exporter
-    tags:
-    - 'exporter'
-    - 'exporter-0.9.0'
-    from: marketplace.gcr.io/google/debian9:latest
-    templateArgs:
-      exporter_notices_check_sum: '5ebf8cba27cde6faa3e91a8b42ea26505bcdc2dc919377c7ad942632c2de0add'
-    packages:
-      apache_exporter:
-        version: '0.9.0'
-      golang:
-        version: '1.14'
-    excludeTests:
-    - tests/functional_tests/running_test.yaml
-# Enable parallel build.
+
+
 cloudbuild:
   enable_parallel: true
+versions:
+- dir: 5/php7/debian9/apache/5.7
+  excludeTests:
+  - tests/functional_tests/apache_exporter_test.yaml
+  from: marketplace.gcr.io/google/php7-apache2:7.3
+  packages:
+    wordpress:
+      sha1: c97c037d942e974eb8524213a505268033aff6c8
+      version: 5.7.2
+  repo: wordpress5-php7-apache
+  tags:
+  - 5.7.2-debian9
+  - 5.7-debian9
+  - 5-debian9
+  - 5.7.2
+  - '5.7'
+  - '5'
+  - latest
+  templateArgs:
+    c2dRelease: 5.7.2
+    cmd: apache2-foreground
+  templateSubDir: debian9
+- dir: exporter
+  excludeTests:
+  - tests/functional_tests/running_test.yaml
+  from: marketplace.gcr.io/google/debian9
+  packages:
+    apache_exporter:
+      version: 0.10.0
+    golang:
+      version: '1.16'
+  repo: wordpress5-php7-apache
+  tags:
+  - exporter-0.10.0
+  - exporter-0.10
+  - exporter-0
+  - exporter
+  templateArgs:
+    exporter_notices_check_sum: 5ebf8cba27cde6faa3e91a8b42ea26505bcdc2dc919377c7ad942632c2de0add
+  templateSubDir: exporter
+
