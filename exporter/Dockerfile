@@ -1,10 +1,10 @@
-FROM marketplace.gcr.io/google/debian9:latest as exporter-builder
+FROM marketplace.gcr.io/google/debian9 as exporter-builder
 
 ENV GOPATH /usr/local
 ENV GOROOT /usr/local/go
-ENV GO_VERSION 1.14
+ENV GO_VERSION 1.16
 ENV PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
-ENV EXPORTER_VERSION 0.9.0
+ENV EXPORTER_VERSION 0.10.0
 ENV NOTICES_SHA256 5ebf8cba27cde6faa3e91a8b42ea26505bcdc2dc919377c7ad942632c2de0add
 
 # Installs packages
@@ -42,7 +42,7 @@ RUN set -eux \
     # Verifies checksum. Changing the checksum means changing the licenses.
     && echo "${NOTICES_SHA256} /NOTICES" | sha256sum -c
 
-FROM marketplace.gcr.io/google/debian9:latest
+FROM marketplace.gcr.io/google/debian9
 
 COPY --from=exporter-builder /apache_exporter /bin/apache_exporter
 COPY --from=exporter-builder /NOTICES /usr/share/apache_exporter/NOTICES
