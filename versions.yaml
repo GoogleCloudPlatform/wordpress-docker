@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2022 Google LLC
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,19 +24,19 @@ versions:
   from: marketplace.gcr.io/google/php7-apache2:7.3
   packages:
     wordpress:
-      sha1: c3b1b59553eafbf301c83b14c5eeae4cf1c86044
-      version: 5.8.2
+      sha1: 3be7ed4dc6f46fe98271b974c88153640e95ad49
+      version: 5.8.3
   repo: wordpress5-php7-apache
   tags:
-  - 5.8.2-debian9
+  - 5.8.3-debian9
   - 5.8-debian9
   - 5-debian9
-  - 5.8.2
+  - 5.8.3
   - '5.8'
   - '5'
   - latest
   templateArgs:
-    c2dRelease: 5.8.2
+    c2dRelease: 5.8.3
     cmd: apache2-foreground
   templateSubDir: debian9
 - dir: exporter
