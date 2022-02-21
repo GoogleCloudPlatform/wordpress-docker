@@ -34,7 +34,7 @@ versions:
   - '5'
   - latest
   templateArgs:
-    c2dRelease: 5.8.3
+    c2dRelease: 5.9
     cmd: apache2-foreground
   templateSubDir: debian9
 - dir: exporter

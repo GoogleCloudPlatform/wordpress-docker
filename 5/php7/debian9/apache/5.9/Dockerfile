@@ -47,7 +47,7 @@ VOLUME /var/www/html
 ENV WORDPRESS_VERSION 5.9
 ENV WORDPRESS_SHA1 455838e46bd2d30a8491ae9bd25bf701c82ed69dbc7c89806e2a130868c6ffb7
 
-ENV C2D_RELEASE 5.8.3
+ENV C2D_RELEASE 5.9
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
