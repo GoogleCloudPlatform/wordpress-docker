@@ -18,21 +18,19 @@
 cloudbuild:
   enable_parallel: true
 versions:
-- dir: 5/php7/debian9/apache/5.8
+- dir: 5/php7/debian9/apache/5.9
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
   from: marketplace.gcr.io/google/php7-apache2:7.3
   packages:
     wordpress:
-      sha1: 3be7ed4dc6f46fe98271b974c88153640e95ad49
-      version: 5.8.3
+      sha1: 455838e46bd2d30a8491ae9bd25bf701c82ed69dbc7c89806e2a130868c6ffb7
+      version: 5.9
   repo: wordpress5-php7-apache
   tags:
-  - 5.8.3-debian9
-  - 5.8-debian9
+  - 5.9-debian9
   - 5-debian9
-  - 5.8.3
-  - '5.8'
+  - 5.9
   - '5'
   - latest
   templateArgs:
