@@ -24,17 +24,37 @@ versions:
   from: marketplace.gcr.io/google/php7-apache2:7.3
   packages:
     wordpress:
-      sha1: 455838e46bd2d30a8491ae9bd25bf701c82ed69dbc7c89806e2a130868c6ffb7
-      version: 5.9
+      sha256: cd638240a64544befdab6fa6beac3546214d533cdee316545d9e753468807690
+      version: 5.9.1
   repo: wordpress5-php7-apache
   tags:
+  - 5.9.1-debian9
   - 5.9-debian9
   - 5-debian9
-  - 5.9
+  - 5.9.1
+  - '5.9'
   - '5'
   - latest
   templateArgs:
-    c2dRelease: 5.9
+    c2dRelease: 5.9.1
+    cmd: apache2-foreground
+  templateSubDir: debian9
+- dir: 5/php7/debian9/apache/5.8
+  excludeTests:
+  - tests/functional_tests/apache_exporter_test.yaml
+  from: marketplace.gcr.io/google/php7-apache2:7.3
+  packages:
+    wordpress:
+      sha256: d4eba1a0ff90459adb753848fe7a566ce7212d1dcc9eb1fbfa51517f9a153da5
+      version: 5.8.3
+  repo: wordpress5-php7-apache
+  tags:
+  - 5.8.3-debian9
+  - 5.8-debian9
+  - 5.8.3
+  - '5.8'
+  templateArgs:
+    c2dRelease: 5.8.3
     cmd: apache2-foreground
   templateSubDir: debian9
 - dir: exporter
@@ -55,4 +75,3 @@ versions:
   templateArgs:
     exporter_notices_check_sum: 5ebf8cba27cde6faa3e91a8b42ea26505bcdc2dc919377c7ad942632c2de0add
   templateSubDir: exporter
-
