@@ -49,7 +49,7 @@ RUN a2enmod rewrite expires
 VOLUME /var/www/html
 
 ENV WORDPRESS_VERSION {{ $wordpress.Version }}
-ENV WORDPRESS_SHA256 {{ $wordpress.Sha1 }}
+ENV WORDPRESS_SHA256 {{ $wordpress.Sha256 }}
 
 ENV C2D_RELEASE {{ $c2dRelease }}
 
