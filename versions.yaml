@@ -24,19 +24,19 @@ versions:
   from: marketplace.gcr.io/google/php7-apache2:7.3
   packages:
     wordpress:
-      sha256: cd638240a64544befdab6fa6beac3546214d533cdee316545d9e753468807690
-      version: 5.9.1
+      sha256: 7765f2dd2a56ce920799787cc7904a585f63365bca2ba0f7bb06ea2060c69f8b
+      version: 5.9.2
   repo: wordpress5-php7-apache
   tags:
-  - 5.9.1-debian9
+  - 5.9.2-debian9
   - 5.9-debian9
   - 5-debian9
-  - 5.9.1
+  - 5.9.2
   - '5.9'
   - '5'
   - latest
   templateArgs:
-    c2dRelease: 5.9.1
+    c2dRelease: 5.9.2
     cmd: apache2-foreground
   templateSubDir: debian9
 - dir: 5/php7/debian9/apache/5.8
@@ -45,16 +45,16 @@ versions:
   from: marketplace.gcr.io/google/php7-apache2:7.3
   packages:
     wordpress:
-      sha256: d4eba1a0ff90459adb753848fe7a566ce7212d1dcc9eb1fbfa51517f9a153da5
-      version: 5.8.3
+      sha256: 0e7a1a3f79cfca8a3289dcc2a13cd196fe9cc0741d65a90b9e3cdfa742a740c4
+      version: 5.8.4
   repo: wordpress5-php7-apache
   tags:
-  - 5.8.3-debian9
+  - 5.8.4-debian9
   - 5.8-debian9
-  - 5.8.3
+  - 5.8.4
   - '5.8'
   templateArgs:
-    c2dRelease: 5.8.3
+    c2dRelease: 5.8.4
     cmd: apache2-foreground
   templateSubDir: debian9
 - dir: exporter
@@ -75,4 +75,3 @@ versions:
   templateArgs:
     exporter_notices_check_sum: 5ebf8cba27cde6faa3e91a8b42ea26505bcdc2dc919377c7ad942632c2de0add
   templateSubDir: exporter
-
