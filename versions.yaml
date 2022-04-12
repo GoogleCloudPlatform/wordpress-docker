@@ -18,19 +18,19 @@
 cloudbuild:
   enable_parallel: true
 versions:
-- dir: 5/php7/debian9/apache/5.9
+- dir: 5/php7/debian11/apache/5.9
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
-  from: marketplace.gcr.io/google/php7-apache2:7.3
+  from: marketplace.gcr.io/google/php7-apache2:7.4
   packages:
     wordpress:
       sha256: 7765f2dd2a56ce920799787cc7904a585f63365bca2ba0f7bb06ea2060c69f8b
       version: 5.9.2
   repo: wordpress5-php7-apache
   tags:
-  - 5.9.2-debian9
-  - 5.9-debian9
-  - 5-debian9
+  - 5.9.2-debian11
+  - 5.9-debian11
+  - 5-debian11
   - 5.9.2
   - '5.9'
   - '5'
@@ -38,29 +38,29 @@ versions:
   templateArgs:
     c2dRelease: 5.9.2
     cmd: apache2-foreground
-  templateSubDir: debian9
-- dir: 5/php7/debian9/apache/5.8
+  templateSubDir: debian11
+- dir: 5/php7/debian11/apache/5.8
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
-  from: marketplace.gcr.io/google/php7-apache2:7.3
+  from: marketplace.gcr.io/google/php7-apache2:7.4
   packages:
     wordpress:
       sha256: 0e7a1a3f79cfca8a3289dcc2a13cd196fe9cc0741d65a90b9e3cdfa742a740c4
       version: 5.8.4
   repo: wordpress5-php7-apache
   tags:
-  - 5.8.4-debian9
-  - 5.8-debian9
+  - 5.8.4-debian11
+  - 5.8-debian11
   - 5.8.4
   - '5.8'
   templateArgs:
     c2dRelease: 5.8.4
     cmd: apache2-foreground
-  templateSubDir: debian9
+  templateSubDir: debian11
 - dir: exporter
   excludeTests:
   - tests/functional_tests/running_test.yaml
-  from: marketplace.gcr.io/google/debian9
+  from: marketplace.gcr.io/google/debian11
   packages:
     apache_exporter:
       version: 0.10.0

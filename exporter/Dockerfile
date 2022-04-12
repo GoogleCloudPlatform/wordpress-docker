@@ -1,4 +1,4 @@
-FROM marketplace.gcr.io/google/debian9 as exporter-builder
+FROM marketplace.gcr.io/google/debian11 as exporter-builder
 
 ENV GOPATH /usr/local
 ENV GOROOT /usr/local/go
@@ -42,7 +42,7 @@ RUN set -eux \
     # Verifies checksum. Changing the checksum means changing the licenses.
     && echo "${NOTICES_SHA256} /NOTICES" | sha256sum -c
 
-FROM marketplace.gcr.io/google/debian9
+FROM marketplace.gcr.io/google/debian11
 
 COPY --from=exporter-builder /apache_exporter /bin/apache_exporter
 COPY --from=exporter-builder /NOTICES /usr/share/apache_exporter/NOTICES

@@ -1,8 +1,4 @@
-{{- $wordpress := index .Packages "wordpress" -}}
-{{- $cmd := index .TemplateArgs "cmd" -}}
-{{- $c2dRelease := index .TemplateArgs "c2dRelease" -}}
-
-FROM {{ .From }}
+FROM marketplace.gcr.io/google/php7-apache2:7.4
 
 # install the PHP extensions we need
 RUN set -ex; \
@@ -16,7 +12,7 @@ RUN set -ex; \
 		libzip-dev \
 	; \
 	\
-	docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
+	docker-php-ext-configure gd --with-jpeg; \
 	docker-php-ext-install gd mysqli opcache zip; \
 	\
 # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
@@ -25,7 +21,7 @@ RUN set -ex; \
 	ldd "$(php -r 'echo ini_get("extension_dir");')"/*.so \
 		| awk '/=>/ { print $3 }' \
 		| sort -u \
-		| xargs -r dpkg-query -S \
+		| xargs -r realpath | xargs -r dpkg-query --search \
 		| cut -d: -f1 \
 		| sort -u \
 		| xargs -rt apt-mark manual; \
@@ -48,10 +44,10 @@ RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION {{ $wordpress.Version }}
-ENV WORDPRESS_SHA256 {{ $wordpress.Sha256 }}
+ENV WORDPRESS_VERSION 5.9.2
+ENV WORDPRESS_SHA256 7765f2dd2a56ce920799787cc7904a585f63365bca2ba0f7bb06ea2060c69f8b
 
-ENV C2D_RELEASE {{ $c2dRelease }}
+ENV C2D_RELEASE 5.9.2
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
@@ -64,4 +60,4 @@ RUN set -ex; \
 COPY docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["{{ $cmd }}"]
+CMD ["apache2-foreground"]
