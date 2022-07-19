@@ -18,6 +18,27 @@
 cloudbuild:
   enable_parallel: true
 versions:
+- dir: 6/php7/debian11/apache/6.0
+  excludeTests:
+  - tests/functional_tests/apache_exporter_test.yaml
+  from: marketplace.gcr.io/google/php7-apache2:7.4
+  packages:
+    wordpress:
+      sha256: f678596804aa89d7cdc9280862938464eab25aeaebfefa91ae175e15aa3ef054
+      version: 6.0.1
+  repo: wordpress6-php7-apache
+  tags:
+  - 6.0.1-debian11
+  - 6.0-debian11
+  - 6-debian11
+  - 6.0.1
+  - '6.0'
+  - '6'
+  - latest
+  templateArgs:
+    c2dRelease: 6.0.1
+    cmd: apache2-foreground
+  templateSubDir: debian11
 - dir: 5/php7/debian11/apache/5.9
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
@@ -48,7 +69,7 @@ versions:
       version: 0.10.0
     golang:
       version: '1.16'
-  repo: wordpress5-php7-apache
+  repo: wordpress6-php7-apache
   tags:
   - exporter-0.10.0
   - exporter-0.10
