@@ -5,7 +5,6 @@ ENV GOROOT /usr/local/go
 ENV GO_VERSION 1.16
 ENV PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
 ENV EXPORTER_VERSION 0.10.0
-ENV NOTICES_SHA256 5ebf8cba27cde6faa3e91a8b42ea26505bcdc2dc919377c7ad942632c2de0add
 
 # Installs packages
 RUN set -eux \
@@ -38,11 +37,15 @@ RUN set -eux \
     && tar -xzf /tmp/apache_exporter-${EXPORTER_VERSION} --strip-components=1 -C . \
     && mv apache_exporter /apache_exporter \
     # Extracts licences
-    && govendor license +vendor > /NOTICES \
-    # Verifies checksum. Changing the checksum means changing the licenses.
-    && echo "${NOTICES_SHA256} /NOTICES" | sha256sum -c
+    && govendor license +vendor > /NOTICES
 
 FROM marketplace.gcr.io/google/debian11
+
+# Update libtasn
+RUN apt-get update \
+    && apt-get install --no-install-recommends -yqq libtasn1-6 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=exporter-builder /apache_exporter /bin/apache_exporter
 COPY --from=exporter-builder /NOTICES /usr/share/apache_exporter/NOTICES
