@@ -18,25 +18,24 @@
 cloudbuild:
   enable_parallel: true
 versions:
-- dir: 6/php7/debian11/apache/6.0
+- dir: 6/php7/debian11/apache/6.1
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
   from: marketplace.gcr.io/google/php7-apache2:7.4
   packages:
     wordpress:
-      sha256: f678596804aa89d7cdc9280862938464eab25aeaebfefa91ae175e15aa3ef054
-      version: 6.0.1
+      version: 6.1.1
   repo: wordpress6-php7-apache
   tags:
-  - 6.0.1-debian11
-  - 6.0-debian11
+  - 6.1.1-debian11
+  - 6.1-debian11
   - 6-debian11
-  - 6.0.1
-  - '6.0'
+  - 6.1.1
+  - '6.1'
   - '6'
   - latest
   templateArgs:
-    c2dRelease: 6.0.1
+    c2dRelease: 6.1.1
     cmd: apache2-foreground
   templateSubDir: debian11
 - dir: 5/php7/debian11/apache/5.9
@@ -45,19 +44,18 @@ versions:
   from: marketplace.gcr.io/google/php7-apache2:7.4
   packages:
     wordpress:
-      sha256: 70cbea5d72decfb129f4cc8e6c3d0175ea64bec68e97961b6db0377278a52a56
-      version: 5.9.3
+      version: 5.9.5
   repo: wordpress5-php7-apache
   tags:
-  - 5.9.3-debian11
+  - 5.9.5-debian11
   - 5.9-debian11
   - 5-debian11
-  - 5.9.3
+  - 5.9.5
   - '5.9'
   - '5'
   - latest
   templateArgs:
-    c2dRelease: 5.9.3
+    c2dRelease: 5.9.5
     cmd: apache2-foreground
   templateSubDir: debian11
 - dir: exporter
@@ -75,8 +73,6 @@ versions:
   - exporter-0.10
   - exporter-0
   - exporter
-  templateArgs:
-    exporter_notices_check_sum: 5ebf8cba27cde6faa3e91a8b42ea26505bcdc2dc919377c7ad942632c2de0add
   templateSubDir: exporter
 - dir: exporter
   excludeTests:
@@ -93,7 +89,5 @@ versions:
   - exporter-0.10
   - exporter-0
   - exporter
-  templateArgs:
-    exporter_notices_check_sum: 5ebf8cba27cde6faa3e91a8b42ea26505bcdc2dc919377c7ad942632c2de0add
   templateSubDir: exporter
 

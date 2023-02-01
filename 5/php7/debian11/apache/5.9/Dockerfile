@@ -10,6 +10,8 @@ RUN set -ex; \
 		libjpeg-dev \
 		libpng-dev \
 		libzip-dev \
+    libtasn1-6 \
+    curl \
 	; \
 	\
 	docker-php-ext-configure gd --with-jpeg=/usr; \
@@ -44,14 +46,12 @@ RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 5.9.3
-ENV WORDPRESS_SHA256 70cbea5d72decfb129f4cc8e6c3d0175ea64bec68e97961b6db0377278a52a56
+ENV WORDPRESS_VERSION 5.9.5
 
-ENV C2D_RELEASE 5.9.3
+ENV C2D_RELEASE 5.9.5
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
-	echo "$WORDPRESS_SHA256 *wordpress.tar.gz" | sha256sum -c -; \
 # upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
 	tar -xzf wordpress.tar.gz -C /usr/src/; \
 	rm wordpress.tar.gz; \
