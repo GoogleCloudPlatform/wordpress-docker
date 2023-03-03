@@ -10,8 +10,6 @@ RUN set -ex; \
 		libjpeg-dev \
 		libpng-dev \
 		libzip-dev \
-    libtasn1-6 \
-    curl \
 	; \
 	\
 	docker-php-ext-configure gd --with-jpeg=/usr; \
