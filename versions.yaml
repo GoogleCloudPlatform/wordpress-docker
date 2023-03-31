@@ -67,11 +67,11 @@ versions:
       version: 0.10.0
     golang:
       version: '1.16'
-  repo: apache-exporter0
+  repo: wordpress6-php7-apache
   tags:
-  - 0.10.0
-  - '0.10'
-  - '0'
-  - latest
+  - exporter-0.10.0
+  - exporter-0.10
+  - exporter-0
+  - exporter
   templateSubDir: exporter
 
