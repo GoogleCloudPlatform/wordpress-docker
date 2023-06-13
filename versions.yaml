@@ -21,7 +21,7 @@ versions:
 - dir: 6/php7/debian11/apache/6.2
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
-  from: marketplace.gcr.io/google/php7-apache2:7.4
+  from: marketplace.gcr.io/google/php8-apache2:8.1
   packages:
     wordpress:
       version: 6.2.2
@@ -36,26 +36,6 @@ versions:
   - latest
   templateArgs:
     c2dRelease: 6.2.2
-    cmd: apache2-foreground
-  templateSubDir: debian11
-- dir: 5/php7/debian11/apache/5.9
-  excludeTests:
-  - tests/functional_tests/apache_exporter_test.yaml
-  from: marketplace.gcr.io/google/php7-apache2:7.4
-  packages:
-    wordpress:
-      version: 5.9.5
-  repo: wordpress5-php7-apache
-  tags:
-  - 5.9.5-debian11
-  - 5.9-debian11
-  - 5-debian11
-  - 5.9.5
-  - '5.9'
-  - '5'
-  - latest
-  templateArgs:
-    c2dRelease: 5.9.5
     cmd: apache2-foreground
   templateSubDir: debian11
 - dir: exporter
