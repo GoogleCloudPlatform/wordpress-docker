@@ -18,7 +18,7 @@
 cloudbuild:
   enable_parallel: true
 versions:
-- dir: 6/php7/debian11/apache/6.1
+- dir: 6/php7/debian11/apache/6.2
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
   from: marketplace.gcr.io/google/php7-apache2:7.4
