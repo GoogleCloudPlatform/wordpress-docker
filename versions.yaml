@@ -24,18 +24,18 @@ versions:
   from: marketplace.gcr.io/google/php7-apache2:7.4
   packages:
     wordpress:
-      version: 6.1.1
+      version: 6.2.2
   repo: wordpress6-php7-apache
   tags:
-  - 6.1.1-debian11
-  - 6.1-debian11
+  - 6.2.2-debian11
+  - 6.2-debian11
   - 6-debian11
-  - 6.1.1
-  - '6.1'
+  - 6.2.2
+  - '6.2'
   - '6'
   - latest
   templateArgs:
-    c2dRelease: 6.1.1
+    c2dRelease: 6.2.2
     cmd: apache2-foreground
   templateSubDir: debian11
 - dir: 5/php7/debian11/apache/5.9
@@ -74,4 +74,3 @@ versions:
   - '0'
   - latest
   templateSubDir: exporter
-
