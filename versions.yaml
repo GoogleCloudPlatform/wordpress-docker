@@ -44,14 +44,13 @@ versions:
   from: marketplace.gcr.io/google/debian11
   packages:
     apache_exporter:
-      version: 0.10.0
+      version: 0.13.4
     golang:
-      version: '1.16'
+      version: '1.18'
   repo: apache-exporter0
   tags:
-  - 0.10.0
-  - '0.10'
+  - 0.13.4
+  - '0.13'
   - '0'
   - latest
   templateSubDir: exporter
-
