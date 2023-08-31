@@ -46,7 +46,7 @@ versions:
     apache_exporter:
       version: 0.13.4
     golang:
-      version: '1.18'
+      version: '1.20'
   repo: apache-exporter0
   tags:
   - 0.13.4
