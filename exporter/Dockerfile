@@ -2,7 +2,7 @@ FROM marketplace.gcr.io/google/debian11 as exporter-builder
 
 ENV GOPATH /usr/local
 ENV GOROOT /usr/local/go
-ENV GO_VERSION 1.18
+ENV GO_VERSION 1.20
 ENV PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
 ENV EXPORTER_VERSION 0.13.4
 
