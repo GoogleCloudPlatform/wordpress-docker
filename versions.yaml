@@ -18,6 +18,26 @@
 cloudbuild:
   enable_parallel: true
 versions:
+- dir: 6/php8/debian11/apache/6.3
+  excludeTests:
+  - tests/functional_tests/apache_exporter_test.yaml
+  from: marketplace.gcr.io/google/php8-apache2:8.2
+  packages:
+    wordpress:
+      version: 6.3.1
+  repo: wordpress6-php8-apache
+  tags:
+  - 6.3.1-debian11
+  - 6.3-debian11
+  - 6-debian11
+  - 6.3.1
+  - '6.3'
+  - '6'
+  - latest
+  templateArgs:
+    c2dRelease: 6.3.1
+    cmd: apache2-foreground
+  templateSubDir: debian11
 - dir: 6/php7/debian11/apache/6.2
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
@@ -29,10 +49,8 @@ versions:
   tags:
   - 6.2.2-debian11
   - 6.2-debian11
-  - 6-debian11
   - 6.2.2
   - '6.2'
-  - '6'
   - latest
   templateArgs:
     c2dRelease: 6.2.2
@@ -54,4 +72,3 @@ versions:
   - '0'
   - latest
   templateSubDir: exporter
-
