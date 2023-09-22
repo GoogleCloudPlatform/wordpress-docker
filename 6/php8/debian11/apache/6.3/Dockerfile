@@ -1,4 +1,4 @@
-FROM marketplace.gcr.io/google/php7-apache2:7.4
+FROM marketplace.gcr.io/google/php8-apache2:8.2
 
 # install the PHP extensions we need
 RUN set -ex; \
@@ -44,9 +44,9 @@ RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 6.2.2
+ENV WORDPRESS_VERSION 6.3.1
 
-ENV C2D_RELEASE 6.2.2
+ENV C2D_RELEASE 6.3.1
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
