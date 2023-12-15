@@ -18,14 +18,14 @@
 cloudbuild:
   enable_parallel: true
 versions:
-- dir: 6/php8/debian11/apache/6.3
+- dir: 6/php7/debian11/apache/6.3
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
-  from: marketplace.gcr.io/google/php8-apache2:8.2
+  from: marketplace.gcr.io/google/php7-apache2:7.4
   packages:
     wordpress:
       version: 6.3.1
-  repo: wordpress6-php8-apache
+  repo: wordpress6-php7-apache
   tags:
   - 6.3.1-debian11
   - 6.3-debian11
@@ -41,7 +41,7 @@ versions:
 - dir: 6/php7/debian11/apache/6.2
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
-  from: marketplace.gcr.io/google/php8-apache2:8.1
+  from: marketplace.gcr.io/google/php7-apache2:7.4
   packages:
     wordpress:
       version: 6.2.2
@@ -51,9 +51,28 @@ versions:
   - 6.2-debian11
   - 6.2.2
   - '6.2'
-  - latest
   templateArgs:
     c2dRelease: 6.2.2
+    cmd: apache2-foreground
+  templateSubDir: debian11
+- dir: 5/php7/debian11/apache/5.9
+  excludeTests:
+  - tests/functional_tests/apache_exporter_test.yaml
+  from: marketplace.gcr.io/google/php7-apache2:7.4
+  packages:
+    wordpress:
+      version: 5.9.7
+  repo: wordpress5-php7-apache
+  tags:
+  - 5.9.7-debian11
+  - 5.9-debian11
+  - 5-debian11
+  - 5.9.7
+  - '5.9'
+  - '5'
+  - latest
+  templateArgs:
+    c2dRelease: 5.9.7
     cmd: apache2-foreground
   templateSubDir: debian11
 - dir: exporter
@@ -62,13 +81,14 @@ versions:
   from: marketplace.gcr.io/google/debian11
   packages:
     apache_exporter:
-      version: 0.13.4
+      version: 0.10.0
     golang:
-      version: '1.20'
-  repo: apache-exporter0
+      version: '1.16'
+  repo: wordpress6-php7-apache
   tags:
-  - 0.13.4
-  - '0.13'
-  - '0'
-  - latest
+  - exporter-0.10.0
+  - exporter-0.10
+  - exporter-0
+  - exporter
   templateSubDir: exporter
+
