@@ -21,11 +21,11 @@ versions:
 - dir: 6/php7/debian11/apache/6.3
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
-  from: marketplace.gcr.io/google/php7-apache2:7.4
+  from: marketplace.gcr.io/google/php8-apache2:8.2
   packages:
     wordpress:
       version: 6.3.1
-  repo: wordpress6-php7-apache
+  repo: wordpress6-php8-apache
   tags:
   - 6.3.1-debian11
   - 6.3-debian11
@@ -41,11 +41,11 @@ versions:
 - dir: 6/php7/debian11/apache/6.2
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
-  from: marketplace.gcr.io/google/php7-apache2:7.4
+  from: marketplace.gcr.io/google/php8-apache2:8.1
   packages:
     wordpress:
       version: 6.2.2
-  repo: wordpress6-php7-apache
+  repo: wordpress6-php8-apache
   tags:
   - 6.2.2-debian11
   - 6.2-debian11
@@ -55,39 +55,19 @@ versions:
     c2dRelease: 6.2.2
     cmd: apache2-foreground
   templateSubDir: debian11
-- dir: 5/php7/debian11/apache/5.9
-  excludeTests:
-  - tests/functional_tests/apache_exporter_test.yaml
-  from: marketplace.gcr.io/google/php7-apache2:7.4
-  packages:
-    wordpress:
-      version: 5.9.7
-  repo: wordpress5-php7-apache
-  tags:
-  - 5.9.7-debian11
-  - 5.9-debian11
-  - 5-debian11
-  - 5.9.7
-  - '5.9'
-  - '5'
-  - latest
-  templateArgs:
-    c2dRelease: 5.9.7
-    cmd: apache2-foreground
-  templateSubDir: debian11
 - dir: exporter
   excludeTests:
   - tests/functional_tests/running_test.yaml
   from: marketplace.gcr.io/google/debian11
   packages:
     apache_exporter:
-      version: 0.10.0
+      version: 0.13.4
     golang:
-      version: '1.16'
-  repo: wordpress6-php7-apache
+      version: '1.20'
+  repo: apache-exporter0
   tags:
-  - exporter-0.10.0
-  - exporter-0.10
+  - exporter-0.13.4
+  - exporter-0.13
   - exporter-0
   - exporter
   templateSubDir: exporter
