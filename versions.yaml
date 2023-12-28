@@ -38,20 +38,19 @@ versions:
     c2dRelease: 6.3.1
     cmd: apache2-foreground
   templateSubDir: debian11
-- dir: 6/php7/debian11/apache/6.2
+- dir: 6/php8/debian11/apache/6.2
   excludeTests:
   - tests/functional_tests/apache_exporter_test.yaml
   from: marketplace.gcr.io/google/php8-apache2:8.1
   packages:
     wordpress:
       version: 6.2.2
-  repo: wordpress6-php7-apache
+  repo: wordpress6-php8-apache
   tags:
   - 6.2.2-debian11
   - 6.2-debian11
   - 6.2.2
   - '6.2'
-  - latest
   templateArgs:
     c2dRelease: 6.2.2
     cmd: apache2-foreground
@@ -67,8 +66,9 @@ versions:
       version: '1.20'
   repo: apache-exporter0
   tags:
-  - 0.13.4
-  - '0.13'
-  - '0'
-  - latest
+  - exporter-0.13.4
+  - exporter-0.13
+  - exporter-0
+  - exporter
   templateSubDir: exporter
+
