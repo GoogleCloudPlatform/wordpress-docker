@@ -1,4 +1,4 @@
-FROM marketplace.gcr.io/google/php8-apache2:8.2
+FROM marketplace.gcr.io/google/php7-apache2:7.4
 
 # install the PHP extensions we need
 RUN set -ex; \
