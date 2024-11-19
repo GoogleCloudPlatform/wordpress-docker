@@ -26,6 +26,9 @@ versions:
     wordpress:
       version: 6.6.1
   repo: wordpress6-php8-apache
+  annotations:
+  - key: com.googleapis.cloudmarketplace.product.service.name
+    value: null
   tags:
   - 6.6.1-debian11
   - 6.6-debian11
@@ -48,6 +51,9 @@ versions:
     golang:
       version: '1.20'
   repo: apache-exporter0
+  annotations:
+  - key: com.googleapis.cloudmarketplace.product.service.name
+    value: services/8139d7ec-b450-4593-829e-608b968b7454.cloudpartnerservices.goog
   tags:
   - 0.13.4
   - '0.13'
