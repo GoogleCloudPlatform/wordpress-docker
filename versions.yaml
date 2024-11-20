@@ -17,7 +17,6 @@
 
 cloudbuild:
   docker_image: gcr.io/cloud-builders/docker:24.0.9
-  docker_image: gcr.io/cloud-builders/docker:24.0.9
   enable_parallel: true
 versions:
 - dir: 6/php8/debian11/apache/6.6
