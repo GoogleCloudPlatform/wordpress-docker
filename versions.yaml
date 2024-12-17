@@ -17,6 +17,7 @@
 
 cloudbuild:
   enable_parallel: true
+  docker_image: gcr.io/cloud-builders/docker:24.0.9
 versions:
 - dir: 6/php8/debian11/apache/6.6
   excludeTests:
@@ -26,6 +27,9 @@ versions:
     wordpress:
       version: 6.6.1
   repo: wordpress6-php8-apache
+  annotations:
+  - key: com.googleapis.cloudmarketplace.product.service.name
+    value: services/1a8e88da-5416-4d78-b91e-9a1b2be81323.cloudpartnerservices.goog
   tags:
   - 6.6.1-debian11
   - 6.6-debian11
@@ -48,6 +52,9 @@ versions:
     golang:
       version: '1.20'
   repo: apache-exporter0
+  annotations:
+  - key: com.googleapis.cloudmarketplace.product.service.name
+    value: services/8139d7ec-b450-4593-829e-608b968b7454.cloudpartnerservices.goog
   tags:
   - 0.13.4
   - '0.13'
